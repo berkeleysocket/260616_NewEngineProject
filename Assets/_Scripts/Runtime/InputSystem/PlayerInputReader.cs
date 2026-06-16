@@ -1,0 +1,53 @@
+using GameModules.InputActions;
+
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace Runtime.InputSystem
+{
+    [CreateAssetMenu(fileName = "PlayerInputReader", menuName = "KSY/SO/InputReader/PlayerInputReader")]
+    public class PlayerInputReader : InputReaderBaseSO, CharacterInputActions.IPlayerActions
+    {
+        private CharacterInputActions _inputActions;
+
+        public override void Initialize(CharacterInputActions inputActions)
+        {
+            this._inputActions = inputActions;
+        }
+
+        public override void Enable()
+        {
+            if (_inputActions != null)
+            {
+                _inputActions.Player.AddCallbacks(this);
+                _inputActions.Enable();
+            }
+        }
+
+        public override void Disable()
+        {
+            if(_inputActions != null)
+            {
+                _inputActions.Player.RemoveCallbacks(this);
+                _inputActions.Disable();
+            }
+        }
+
+        public override InputActionMap GetInputActionMap() => _inputActions?.Player;
+        
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if(context.started)
+            {
+            }
+        }
+
+        public void OnMove(InputAction.CallbackContext context)
+        {
+            if(context.started || context.canceled)
+            {
+                float input = context.ReadValue<float>();
+            }
+        }
+    }
+}

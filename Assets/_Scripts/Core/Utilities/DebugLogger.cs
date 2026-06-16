@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using UnityEngine;
 
-namespace Utilities
+namespace Core.Utilities
 {
     public static class DebugLogger
     {

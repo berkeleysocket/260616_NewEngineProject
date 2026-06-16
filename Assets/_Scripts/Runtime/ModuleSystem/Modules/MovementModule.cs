@@ -1,5 +1,6 @@
+using Core.Utilities;
+
 using UnityEngine;
-using Utilities;
 
 namespace ModuleSystem
 {
@@ -8,6 +9,7 @@ namespace ModuleSystem
     {
         private ModuleOwner _owner;
         private CharacterController _controller;
+
         public void Initialize(ModuleOwner owner)
         {
             this._owner = owner;
@@ -15,6 +17,11 @@ namespace ModuleSystem
 
             DebugLogger.ValidateObject(_owner);
             DebugLogger.ValidateObject(_controller);
+        }
+
+        private void Move(Vector2 direction)
+        {
+            _controller.Move(new Vector3(direction.x, transform.position.y, direction.y));
         }
     }
 }
