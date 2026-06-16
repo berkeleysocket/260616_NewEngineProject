@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace ModuleSystem
+namespace Runtime.Agents.ModuleSystem
 {
     public abstract class ModuleOwner : MonoBehaviour
     {
-        private Dictionary<Type, IModule> _modules;
+        private Dictionary<Type, AbstractModule> _modules;
 
+        [ContextMenu("Initialize")]
         private void Initialize()
         {
-            _modules = new Dictionary<Type, IModule>();
-            _modules = GetComponentsInChildren<IModule>()
+            _modules = new Dictionary<Type, AbstractModule>();
+            _modules = GetComponentsInChildren<AbstractModule>()
                 .ToDictionary(
                 (module)=> module.GetType(),
                 (module)=>module);
@@ -21,12 +22,12 @@ namespace ModuleSystem
                 module.Initialize(this);
         }
 
-        protected T GetModule<T>() where T : class, IModule
+        public T GetModule<T>() where T : AbstractModule
         {
             Type findModuleType = typeof(T); 
             T resultModule = null;
 
-            _modules.TryGetValue(findModuleType, out IModule iModule);
+            _modules.TryGetValue(findModuleType, out AbstractModule iModule);
 
             if (iModule != null)
                 resultModule = iModule as T;

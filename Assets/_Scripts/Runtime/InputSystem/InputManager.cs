@@ -1,4 +1,5 @@
 using Core;
+using Core.Utilities;
 using GameModules.InputActions;
 
 using System;
@@ -24,6 +25,7 @@ namespace Runtime.InputSystem
             DisableAllReader();
         }
 
+        [ContextMenu("Initialize")]
         public void Initialize()
         {
             _inputActions = new CharacterInputActions();
@@ -38,6 +40,10 @@ namespace Runtime.InputSystem
 
                 reader.Initialize(_inputActions);
             }
+
+            DebugLogger.ValidateObject(readerRegistry);
+            DebugLogger.LogSuccess("Initialize InputManager");
+            EnableReader<PlayerInputReader>();
         }
 
         public void EnableReader<T>() where T : InputReaderBaseSO
