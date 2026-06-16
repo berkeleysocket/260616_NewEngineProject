@@ -1,9 +1,9 @@
 using System.Diagnostics;
 using UnityEngine;
 
-namespace Utility.Debug
+namespace Utilities
 {
-    public static class CustomLog
+    public static class DebugLogger
     {
         [Conditional("UNITY_EDITOR"), Conditional("DEVELOPMENT_BUILD")]
         public static void Log(object message)
@@ -35,6 +35,11 @@ namespace Utility.Debug
         public static void Assert(bool condition,object message)
         {
             UnityEngine.Debug.Assert(condition, message);
+        }
+        [Conditional("UNITY_EDITOR"), Conditional("DEVELOPMENT_BUILD")]
+        public static void ValidateObject(object target)
+        {
+            UnityEngine.Debug.Assert(target != null, $"{target.ToString()} is null.");
         }
     }
 }
