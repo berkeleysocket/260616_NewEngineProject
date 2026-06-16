@@ -16,6 +16,9 @@ namespace ModuleSystem
                 .ToDictionary(
                 (module)=> module.GetType(),
                 (module)=>module);
+
+            foreach(var module in _modules.Values)
+                module.Initialize(this);
         }
 
         protected T GetModule<T>() where T : class, IModule
