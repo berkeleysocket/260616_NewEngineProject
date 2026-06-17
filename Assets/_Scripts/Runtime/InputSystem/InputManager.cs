@@ -15,6 +15,11 @@ namespace Runtime.InputSystem
         private Dictionary<Type, bool> _isReaderRegistered;
         private CharacterInputActions _inputActions;
 
+        private void Awake()
+        {
+            TestInitialize();
+        }
+
         private void OnDisable()
         {
             DisableAllReader();
@@ -25,7 +30,6 @@ namespace Runtime.InputSystem
             DisableAllReader();
         }
 
-        [ContextMenu("Initialize")]
         public void Initialize()
         {
             _inputActions = new CharacterInputActions();
@@ -42,8 +46,14 @@ namespace Runtime.InputSystem
             }
 
             DebugLogger.ValidateObject(readerRegistry);
+        }
+
+        private void TestInitialize()
+        {
+            Initialize();
             DebugLogger.LogSuccess("Initialize InputManager");
             EnableReader<CharacterInputReader>();
+            DebugLogger.LogSuccess("Enable CharacterInputReader");
         }
 
         public void EnableReader<T>() where T : InputReaderBaseSO

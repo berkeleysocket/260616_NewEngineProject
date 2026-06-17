@@ -1,3 +1,4 @@
+using Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,11 @@ namespace Runtime.Agents.ModuleSystem
     {
         private Dictionary<Type, AbstractModule> _modules;
 
-        [ContextMenu("Initialize")]
+        private void Awake()
+        {
+            Initialize();
+            DebugLogger.LogSuccess($"Initialize {gameObject.name}");
+        }
         private void Initialize()
         {
             _modules = new Dictionary<Type, AbstractModule>();
