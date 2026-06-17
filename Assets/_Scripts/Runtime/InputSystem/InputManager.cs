@@ -1,16 +1,17 @@
 using Core;
 using Core.Utilities;
-using GameModules.InputActions;
+using GameModules.Input;
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Runtime.InputSystem
 {
     public class InputManager : MonoSingleton<InputManager>
     {
-        [SerializeField] private List<InputReaderBaseSO> readerRegistry;
+        [SerializeField] private InputReaderBaseSO[] readerRegistry;
         private Dictionary<Type, InputReaderBaseSO> _readers;
         private Dictionary<Type, bool> _isReaderRegistered;
         private CharacterInputActions _inputActions;
@@ -45,7 +46,7 @@ namespace Runtime.InputSystem
                 reader.Initialize(_inputActions);
             }
 
-            DebugLogger.ValidateObject(readerRegistry);
+            DebugLogger.Assert(readerRegistry != null && readerRegistry.Length > 0, "ReaderRegistry is null");
         }
 
         private void TestInitialize()

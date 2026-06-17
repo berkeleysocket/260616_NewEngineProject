@@ -2,9 +2,7 @@ using Core.Utilities;
 using Core.Utilities.EventChannelSystem;
 using Runtime.Agents.ModuleSystem.Interface;
 using Runtime.Player;
-using Unity.Hierarchy;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
 
 namespace Runtime.Agents.ModuleSystem
 {
@@ -12,8 +10,10 @@ namespace Runtime.Agents.ModuleSystem
     public class MovementModule : AbstractModule, IMovement
     {
         [SerializeField] private GameEventChannelSO playerMoveInputChannel;
+        [SerializeField] private GameEventChannelSO playerDashInputChannel;
 
-        public bool IsMoving { get => new Vector2(_velocity.x, _velocity.z) != Vector2.zero; }
+        public bool IsMoving { get; private set; }
+        public bool IsDashing { get; private set; }
 
         private CharacterController _controller;
         private float _moveSpeed = 5f;
@@ -30,8 +30,9 @@ namespace Runtime.Agents.ModuleSystem
         {
             this._controller = GetComponent<CharacterController>();
 
-            DebugLogger.ValidateObject(_controller);
-            DebugLogger.ValidateObject(playerMoveInputChannel);
+            DebugLogger.Assert(_controller != null, "Controller is null");
+            DebugLogger.Assert(playerMoveInputChannel != null, "PlayerMoveInputChannel is null");
+            DebugLogger.Assert(playerDashInputChannel != null, "PlayerDashInputChannel is null");
 
             playerMoveInputChannel.AddListener<PlayerMoveInputEvent>(OnPlayerMoveInput);
         }
@@ -40,6 +41,11 @@ namespace Runtime.Agents.ModuleSystem
         {
             _velocity = new Vector3(direction.x, 0, direction.y) * _moveSpeed;
             RotateTo(_velocity);
+            
+            if (direction.x != 0f || direction.y != 0f)
+                IsMoving = true;
+            else
+                IsMoving = false;
         }
 
         public void RotateTo(Vector3 direction)

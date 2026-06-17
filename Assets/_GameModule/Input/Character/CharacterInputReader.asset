@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.InputSystem.PlayerInputReader
   m_Description: 
   playerMoveInputChannel: {fileID: 11400000, guid: 4462d0530cd82e746962ef07eda3abc6, type: 2}
+  playerDashInputChannel: {fileID: 11400000, guid: 397e95f31d16cd740b4fd5152d505cf0, type: 2}

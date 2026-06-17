@@ -14,7 +14,7 @@ namespace Runtime.Agents.ModuleSystem
             this.owner = owner;
             this.initialized = true;
 
-            DebugLogger.ValidateObject(owner);
+            DebugLogger.Assert(owner != null, "owner is null");
             OnInitialize();
         }
 

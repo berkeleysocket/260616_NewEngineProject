@@ -19,3 +19,4 @@ MonoBehaviour:
   <StateIndex>k__BackingField: 0
   <Conditions>k__BackingField:
   - {fileID: 11400000, guid: 8f2a7f5cf201ec24b999ce1e1447f4b0, type: 2}
+  - {fileID: 11400000, guid: d65b509055a0c104ab120418b75dc8b6, type: 2}

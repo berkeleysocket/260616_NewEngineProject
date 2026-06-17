@@ -10,5 +10,7 @@ namespace Runtime.Player
     {
         public Vector2 direction;
     }
+
+    public class PlayerDashInputEvent : GameEvent { }
 }
 

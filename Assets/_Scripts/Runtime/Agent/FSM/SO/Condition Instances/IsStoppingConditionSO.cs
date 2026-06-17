@@ -14,7 +14,7 @@ namespace Runtime.Agents.FSM
         {
             this._movement = agent.GetModule<MovementModule>();
 
-            DebugLogger.ValidateObject(_movement);
+            DebugLogger.Assert(_movement != null, "Movement is null");
         }
         
         public override bool CheckCondition()

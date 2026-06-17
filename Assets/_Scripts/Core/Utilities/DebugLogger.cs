@@ -32,14 +32,9 @@ namespace Core.Utilities
             UnityEngine.Debug.Log($"<color=green>[Success] {message}</color>");
         }
         [Conditional("UNITY_EDITOR"), Conditional("DEVELOPMENT_BUILD")]
-        public static void Assert(bool condition,object message)
+        public static void Assert(bool condition, object message)
         {
             UnityEngine.Debug.Assert(condition, message);
-        }
-        [Conditional("UNITY_EDITOR"), Conditional("DEVELOPMENT_BUILD")]
-        public static void ValidateObject(object target)
-        {
-            UnityEngine.Debug.Assert(target != null, $"{target.ToString()} is null.");
         }
     }
 }

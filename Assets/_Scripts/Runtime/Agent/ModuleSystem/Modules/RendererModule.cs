@@ -12,8 +12,6 @@ namespace Runtime.Agents.ModuleSystem
         protected override void OnInitialize()
         {
             this._animator = GetComponent<Animator>();
-
-            DebugLogger.ValidateObject(_animator);
         }
 
         public void PlayClip(int stateNameHash, float transitionDuration, int animationLayer = 0, float normalizedTime = 0f)

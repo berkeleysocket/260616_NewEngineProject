@@ -16,7 +16,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
+                    "name": "Dash",
                     "type": "Button",
                     "id": "e7cb055b-b503-417f-97ca-659272d6944d",
                     "expectedControlType": "",
@@ -27,8 +27,8 @@
             ],
             "bindings": [
                 {
-                    "name": "WASD",
-                    "id": "d1eb5d50-94a4-4f5e-a591-46f4fc21e430",
+                    "name": "WS",
+                    "id": "77abf01c-eab1-4f68-a9b7-29d2d97e7dbc",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -39,7 +39,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "bff111ad-14f3-464e-b8da-32d30b4e9c82",
+                    "id": "1acb4e59-0819-4b86-98a4-46c219f77b27",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -50,7 +50,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "1d8a9174-8ad9-4733-bf2b-655f6fd4b9e0",
+                    "id": "0b600ffd-b639-4304-a0df-2af72dccf694",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -58,6 +58,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "AD",
+                    "id": "d1eb5d50-94a4-4f5e-a591-46f4fc21e430",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "left",
@@ -84,11 +95,11 @@
                 {
                     "name": "",
                     "id": "4a5c7ed8-f23a-4b30-8d6d-77e3d2731e1b",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

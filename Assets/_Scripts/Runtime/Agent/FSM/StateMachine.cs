@@ -23,9 +23,9 @@ namespace Runtime.Agents.FSM
                 int animationHash = stateSO.AnimationParamSO.ClipHash;
                 StateConditionSO[] conditions = stateSO.Conditions;
 
-                DebugLogger.ValidateObject(stateType);
-                DebugLogger.ValidateObject(renderer);
-                DebugLogger.ValidateObject(stateType);
+                DebugLogger.Assert(stateType != null, "StateType is null");
+                DebugLogger.Assert(renderer != null, "Renderer is null");
+                DebugLogger.Assert(conditions != null && conditions.Length > 0, "Conditions is null");
 
                 AbstractAgentState stateInstance = (AbstractAgentState)Activator.CreateInstance(stateType, agent, renderer, animationHash, conditions);
                 stateInstance.Initialize();
@@ -38,7 +38,7 @@ namespace Runtime.Agents.FSM
         {
             _states.TryGetValue(stateIndex, out AbstractAgentState state);
 
-            DebugLogger.ValidateObject(state);
+            DebugLogger.Assert(state != null, "State is null");
 
             _currentState?.Exit();
             _currentState = state;
