@@ -1,23 +1,22 @@
-using Core.Utilities;
 using Core.Utilities.EventChannelSystem;
 using Runtime.Player;
 using UnityEngine;
 
 namespace Runtime.Agents.FSM
 {
-    [CreateAssetMenu(fileName = "IsDashingConditionSO", menuName = "SO/StateConditionSO/IsDashingConditionSO", order = 0)]
+    [CreateAssetMenu(fileName = "IsDashingCondition", menuName = "SO/StateConditionSO/IsDashingConditionSO", order = 0)]
     public class IsDashingConditionSO : StateConditionSO
     {
-        [SerializeField] private GameEventChannelSO playerInputDashChannel;
+        [SerializeField] private GameEventChannelSO playerIsDashingEvent;
         private bool isDashing = true;
+
         public override void Initialize(Agent agent)
         {
-            playerInputDashChannel.AddListener<PlayerDashInputEvent>(OnPlayerDashed);
+            playerIsDashingEvent.AddListener<PlayerIsDashingEvent>(OnDashed);
         }
 
         public override bool CheckCondition()
         {
-            DebugLogger.Log("Check Condition");
             if (isDashing)
             {
                 isDashing = false;
@@ -27,10 +26,6 @@ namespace Runtime.Agents.FSM
             return false;
         }
 
-        private void OnPlayerDashed(PlayerDashInputEvent args)
-        {
-            DebugLogger.Log("OnPlayerDashed");
-            isDashing = true;
-        }
+        private void OnDashed(PlayerIsDashingEvent args) => isDashing = true;
     }
 }

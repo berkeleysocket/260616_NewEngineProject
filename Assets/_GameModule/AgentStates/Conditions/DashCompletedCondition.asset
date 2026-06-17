@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d6d8b52fa11e894e8e8a968950d7f47, type: 3}
-  m_Name: IsStoppingCondition
-  m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.FSM.IsStoppingConditionSO
-  NextStateType: 0
+  m_Name: DashCompletedCondition
+  m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.FSM.DashCompletedConditionSO
+  NextStateType: 1
+  playerCompletedDashChannel: {fileID: 11400000, guid: 236f17b69c47e9148a1651e6b298e36b, type: 2}

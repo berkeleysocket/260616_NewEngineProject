@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fc44e5d1c436a4bbeffc34fe52347b, type: 3}
   m_Name: CharacterInputReader
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.InputSystem.PlayerInputReader
-  m_Description: 
-  playerMoveInputChannel: {fileID: 11400000, guid: 4462d0530cd82e746962ef07eda3abc6, type: 2}
-  playerDashInputChannel: {fileID: 11400000, guid: 397e95f31d16cd740b4fd5152d505cf0, type: 2}
+  m_Description: "\uD50C\uB808\uC774\uC5B4 \uCE90\uB9AD\uD130\uB97C \uC870\uC791\uD560
+    \uB54C \uC785\uB825\uC744 \uBC1B\uB294 SO"
+  playerMoveKeyInputChannel: {fileID: 11400000, guid: 4462d0530cd82e746962ef07eda3abc6, type: 2}
+  playerDashKeyInputChannel: {fileID: 11400000, guid: 6f6d804b28870ac4e99b4fb595f28d04, type: 2}

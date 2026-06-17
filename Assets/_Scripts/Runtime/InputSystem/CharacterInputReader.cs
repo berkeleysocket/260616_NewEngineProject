@@ -10,21 +10,21 @@ namespace Runtime.InputSystem
     [CreateAssetMenu(fileName = "CharacterInputReader", menuName = "InputReader/CharacterInputReader")]
     public class CharacterInputReader : InputReaderBaseSO, CharacterInputActions.IPlayerActions
     {
-        [SerializeField] private GameEventChannelSO playerMoveInputChannel;
-        [SerializeField] private GameEventChannelSO playerDashInputChannel;
+        [SerializeField] private GameEventChannelSO playerMoveKeyInputChannel;
+        [SerializeField] private GameEventChannelSO playerDashKeyInputChannel;
 
-        private PlayerMoveInputEvent _playerMoveInputEvent;
-        private PlayerDashInputEvent _playerDashInputEvent;
+        private PlayerMoveKeyInputEvent _playerMoveKeyInputEvent;
+        private PlayerDashKeyInputEvent _playerDashKeyInputEvent;
         private CharacterInputActions _inputActions;
 
         public override void Initialize(CharacterInputActions inputActions)
         {
             this._inputActions = inputActions;
-            this._playerMoveInputEvent = new PlayerMoveInputEvent();
-            this._playerDashInputEvent = new PlayerDashInputEvent();
+            this._playerMoveKeyInputEvent = new PlayerMoveKeyInputEvent();
+            this._playerDashKeyInputEvent = new PlayerDashKeyInputEvent();
 
-            DebugLogger.Assert(playerMoveInputChannel != null, "PlayerMoveInputChannel is null");
-            DebugLogger.Assert(playerDashInputChannel != null, "playerDashInputChannel is null");
+            DebugLogger.Assert(playerMoveKeyInputChannel != null, "PlayerMoveKeyInputChannel is null");
+            DebugLogger.Assert(playerDashKeyInputChannel != null, "PlayerDashKeyInputChannel is null");
         }
 
         public override void Enable()
@@ -51,7 +51,7 @@ namespace Runtime.InputSystem
         {
             if(context.started)
             {
-                playerDashInputChannel.RaiseEvent(_playerDashInputEvent);
+                playerDashKeyInputChannel.RaiseEvent(_playerDashKeyInputEvent);
             }
         }
 
@@ -61,8 +61,8 @@ namespace Runtime.InputSystem
             {
                 Vector2 direction = context.ReadValue<Vector2>();
 
-                _playerMoveInputEvent.direction = direction;
-                playerMoveInputChannel.RaiseEvent(_playerMoveInputEvent);
+                _playerMoveKeyInputEvent.direction = direction;
+                playerMoveKeyInputChannel.RaiseEvent(_playerMoveKeyInputEvent);
             }
         }
     }

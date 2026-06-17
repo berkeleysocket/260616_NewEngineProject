@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Runtime.Agents.FSM
 {
-    [CreateAssetMenu(fileName = "IsMovingConditionSO", menuName = "SO/StateConditionSO/IsMovingCondition", order = 0)]
+    [CreateAssetMenu(fileName = "IsMovingCondition", menuName = "SO/StateConditionSO/IsMovingCondition", order = 0)]
     public class IsMovingConditionSO : StateConditionSO
     {
         private IMovement _movement;
