@@ -1,44 +1,53 @@
 using Core.Utilities;
-using Runtime.Agents;
-using Runtime.Agents.FSM;
 using Runtime.Agents.ModuleSystem;
 using Runtime.Agents.ModuleSystem.Interface;
 
 using System;
 using System.Collections.Generic;
 
-namespace Runtime.FSM
+namespace Runtime.Agents.FSM
 {
     public class StateMachine
     {
-        private Dictionary<Type, AbstractState> _states;
-        private AbstractState currentState;
+        private Dictionary<byte, AbstractAgentState> _states;
+        private AbstractAgentState _currentState;
 
-        public void Initialize(Agent agent, StateSO[] stateList)
+        public void Initialize(Agent agent, AgentStateSO[] stateList)
         {
-            this._states = new Dictionary<Type, AbstractState>();
+            this._states = new Dictionary<byte, AbstractAgentState>();
 
-            foreach(StateSO stateSO in stateList)
+            foreach (AgentStateSO stateSO in stateList)
             {
                 Type stateType = Type.GetType(stateSO.ClassName);
                 IRenderer renderer = agent.GetModule<RendererModule>();
                 int animationHash = stateSO.AnimationParamSO.ClipHash;
+                StateConditionSO[] conditions = stateSO.Conditions;
 
                 DebugLogger.ValidateObject(stateType);
                 DebugLogger.ValidateObject(renderer);
                 DebugLogger.ValidateObject(stateType);
 
-                AbstractState stateInstance = (AbstractState)Activator.CreateInstance(stateType, renderer, animationHash);
+                AbstractAgentState stateInstance = (AbstractAgentState)Activator.CreateInstance(stateType, agent, renderer, animationHash, conditions);
+                stateInstance.Initialize();
 
-                _states.Add(stateType, stateInstance);
+                _states.Add((byte)stateSO.StateIndex, stateInstance);
             }
         }
 
-        public void ChangeState(StateType stateType)
+        public void ChangeState(byte stateIndex, float transitionDuration = 0.1f)
         {
-            byte idx = (byte)stateType;
+            _states.TryGetValue(stateIndex, out AbstractAgentState state);
 
-            _states
+            DebugLogger.ValidateObject(state);
+
+            _currentState?.Exit();
+            _currentState = state;
+            _currentState.Enter(transitionDuration);
+        }
+
+        public void Update()
+        {
+            _currentState?.Update();
         }
     }
 }

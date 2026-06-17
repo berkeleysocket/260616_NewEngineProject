@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 
 namespace Runtime.InputSystem
 {
-    [CreateAssetMenu(fileName = "PlayerInputReader", menuName = "InputReader/PlayerInputReader")]
-    public class PlayerInputReader : InputReaderBaseSO, CharacterInputActions.IPlayerActions
+    [CreateAssetMenu(fileName = "CharacterInputReader", menuName = "InputReader/CharacterInputReader")]
+    public class CharacterInputReader : InputReaderBaseSO, CharacterInputActions.IPlayerActions
     {
         [SerializeField] private GameEventChannelSO playerMoveInputChannel;
 

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d4ac486fafc45499d0592aa09cbbe2, type: 3}
+  m_Name: state IDLE
+  m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.FSM.StateSO
+  m_Description: 
+  <StateName>k__BackingField: IDLE
+  <ClassName>k__BackingField: Runtime.Agents.FSM.AgentIdleState
+  <AnimationParamSO>k__BackingField: {fileID: 11400000, guid: 0a94e0cf2046aa147bd8fdaed11a3a97, type: 2}
+  <StateIndex>k__BackingField: 0
+  <Conditions>k__BackingField:
+  - {fileID: 11400000, guid: 8f2a7f5cf201ec24b999ce1e1447f4b0, type: 2}

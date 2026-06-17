@@ -1,16 +1,13 @@
-using Runtime.Agnet.ModuleSystem;
 using Runtime.Agents.FSM;
 
 namespace Runtime.Agents
 {
     public class Player : Agent
     {
-        private StateMachine _stateMachine;
-
-        private void Awake()
+        protected override void OnInitialize()
         {
-            _stateMachine = new StateMachine();
-            //_stateMachine.Initialize(GetModule<RendererModule>(), );
+            this.StateMachine.Initialize(this, stateSOList.Values);
+            this.StateMachine.ChangeState((byte)StateType.IDLE);
         }
     }
 }

@@ -1,5 +1,6 @@
 using Core.Utilities;
 using Core.Utilities.EventChannelSystem;
+using Runtime.Agents.ModuleSystem.Interface;
 using Runtime.Player;
 
 using UnityEngine;
@@ -7,9 +8,11 @@ using UnityEngine;
 namespace Runtime.Agents.ModuleSystem
 {
     [RequireComponent(typeof(CharacterController))]
-    public class MovementModule : AbstractModule
+    public class MovementModule : AbstractModule, IMovement
     {
         [SerializeField] private GameEventChannelSO playerMoveInputChannel;
+
+        public bool IsMoving { get => new Vector2(_velocity.x, _velocity.z) != Vector2.zero; }
 
         private CharacterController _controller;
         private float _speed = 5f;
@@ -33,7 +36,6 @@ namespace Runtime.Agents.ModuleSystem
 
         private void Move(Vector2 direction)
         {
-            DebugLogger.Log($"dir : {direction}");
             _velocity = new Vector3(direction.x, 0, direction.y) * _speed;
         }
 

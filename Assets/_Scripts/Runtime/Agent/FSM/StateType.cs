@@ -1,8 +1,8 @@
-namespace Runtime.FSM
+namespace Runtime.Agents.FSM
 {
     public enum StateType : byte
     {
-        IDLE,
+        IDLE = 0,
         RUN,
         JUMP,
         FALL

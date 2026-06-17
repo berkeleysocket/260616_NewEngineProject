@@ -43,7 +43,7 @@ namespace Runtime.InputSystem
 
             DebugLogger.ValidateObject(readerRegistry);
             DebugLogger.LogSuccess("Initialize InputManager");
-            EnableReader<PlayerInputReader>();
+            EnableReader<CharacterInputReader>();
         }
 
         public void EnableReader<T>() where T : InputReaderBaseSO

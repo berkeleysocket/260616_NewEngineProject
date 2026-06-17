@@ -16,10 +16,10 @@ namespace Runtime.Agents.ModuleSystem
             DebugLogger.ValidateObject(_animator);
         }
 
-        public void PlayClip(int stateNameHash, int animationLayer, float normalizedTime)
+        public void PlayClip(int stateNameHash, float transitionDuration, int animationLayer = 0, float normalizedTime = 0f)
         {
-            if(initialized)
-                _animator.Play(stateNameHash, animationLayer, normalizedTime);
+            if (initialized)
+                _animator.CrossFadeInFixedTime(stateNameHash, transitionDuration, animationLayer, normalizedTime);
         }
     }
 }

@@ -20,7 +20,11 @@ namespace Runtime.Agents.ModuleSystem
 
             foreach(var module in _modules.Values)
                 module.Initialize(this);
+
+            OnInitialize();
         }
+
+        protected abstract void OnInitialize();
 
         public T GetModule<T>() where T : AbstractModule
         {
