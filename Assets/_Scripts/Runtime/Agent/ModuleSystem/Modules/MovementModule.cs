@@ -140,8 +140,9 @@ namespace Runtime.Agents.ModuleSystem
             _canDash = false;
             IsMoving = false;
 
-            //Vector3 dashDirection = GetDashDirection();
-            _velocity = _lastMoveDirection * _dashSpeed;
+            Vector3 dashDirection = GetDashDirection();
+            RotateTo(dashDirection);
+            _velocity = dashDirection * _dashSpeed;
 
             yield return new WaitForSeconds(_dashDuration);
 
@@ -190,6 +191,7 @@ namespace Runtime.Agents.ModuleSystem
             IsMoving = false;
 
             Vector3 dashDirection = GetDashDirection();
+            RotateTo(dashDirection);
             _velocity = dashDirection * _dashAttackSpeed;
 
             yield return new WaitForSeconds(_dashAttackDuration);
@@ -213,14 +215,7 @@ namespace Runtime.Agents.ModuleSystem
 
         private Vector3 GetDashDirection()
         {
-            Vector3 direction = owner.transform.forward;
-            direction.y = 0;
-            direction.Normalize();
-
-            if (direction.sqrMagnitude < Mathf.Epsilon)
-            {
-                direction = owner.transform.forward;
-            }
+            Vector3 direction = new Vector3(_lastMoveDirection.x, 0, _lastMoveDirection.y);
             return direction;
         }
 

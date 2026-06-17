@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f263d143a5abb498e789fef8df1f1a, type: 3}
   m_Name: PlayerMovementData
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.ModuleSystem.SO.MovementModuleDataSO
-  <MoveSpeed>k__BackingField: 4
-  <DashSpeed>k__BackingField: 9
-  <DashDuration>k__BackingField: 1
+  <MoveSpeed>k__BackingField: 5
+  <DashSpeed>k__BackingField: 10
+  <DashDuration>k__BackingField: 0.25
   <DashCooldown>k__BackingField: 0.15
-  <DashAttackSpeed>k__BackingField: 12
-  <DashAttackDuration>k__BackingField: 1
-  <DashAttackCooldown>k__BackingField: 0.35
+  <DashAttackSpeed>k__BackingField: 13
+  <DashAttackDuration>k__BackingField: 0.4
+  <DashAttackCooldown>k__BackingField: 0.3
