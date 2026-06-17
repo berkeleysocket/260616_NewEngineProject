@@ -15,7 +15,8 @@ MonoBehaviour:
   m_Description: 
   <StateName>k__BackingField: DASH
   <ClassName>k__BackingField: Runtime.Agents.FSM.AgentDashState
-  <AnimationParamSO>k__BackingField: {fileID: 11400000, guid: 0afd8f09789025a4fb799e73422ed3bc, type: 2}
+  <AnimationParamSO>k__BackingField: {fileID: 11400000, guid: 9fe050e2a5457f047bc2340ca9daef5c, type: 2}
   <StateIndex>k__BackingField: 2
   <Conditions>k__BackingField:
-  - {fileID: 11400000, guid: 7c2fc6d572221d14a9780214b61a962d, type: 2}
+  - {fileID: 11400000, guid: 1700bfa1fffa5d44bbd5ea2f7b396b40, type: 2}
+  - {fileID: 11400000, guid: 4e0466ce01d5ade4999381ccf6cba7e9, type: 2}

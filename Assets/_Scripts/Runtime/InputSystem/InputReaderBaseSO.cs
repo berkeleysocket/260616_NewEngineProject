@@ -1,5 +1,5 @@
 using Core.Utilities;
-using GameModules.Input;
+using GameModules.InputActions;
 
 using UnityEngine.InputSystem;
 

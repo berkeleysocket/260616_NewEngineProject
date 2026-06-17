@@ -19,7 +19,6 @@ namespace Runtime.Agents.FSM
 
         public override bool CheckCondition()
         {
-            DebugLogger.Log($"CheckCondition - _movement.IsMoving : {_movement.IsMoving}");
             if (_movement.IsMoving)
                 return true;
             return false;

@@ -6,12 +6,16 @@ namespace Runtime.Player
 {
     public class PlayerEvent { };
 
-    public class PlayerMoveKeyInputEvent : GameEvent
+    public class MoveKeyInputEvent : GameEvent
     {
         public Vector2 direction;
     }
-    public class PlayerDashKeyInputEvent : GameEvent { }
-    public class PlayerIsDashingEvent : GameEvent { }
-    public class PlayerCompletedDashEvent : GameEvent { }
-}
+    public class DashKeyInputEvent : GameEvent { }
+    public class DashAttackKeyInputEvent : GameEvent { }
 
+    public class IsDashingEvent : GameEvent { }
+    public class CompletedDashEvent : GameEvent { }
+
+    public class IsDashAttackingEvent : GameEvent { }
+    public class CompletedDashAttackEvent : GameEvent { }
+}

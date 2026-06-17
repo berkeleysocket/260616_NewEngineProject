@@ -5,5 +5,6 @@ namespace Runtime.Agents.FSM
         IDLE = 0,
         RUN,
         DASH,
+        DASHATTACK,
     }
 }

@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace GameModules.Input
+namespace GameModules.InputActions
 {
     /// <summary>
     /// Provides programmatic access to <see cref="InputActionAsset" />, <see cref="InputActionMap" />, <see cref="InputAction" /> and <see cref="InputControlScheme" /> instances defined in asset "Assets/_GameModule/Input/Character/CharacterInputActions.inputactions".
@@ -104,9 +104,18 @@ namespace GameModules.Input
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Dash"",
+                    ""name"": ""DashRoll"",
                     ""type"": ""Button"",
                     ""id"": ""e7cb055b-b503-417f-97ca-659272d6944d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DashAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""4e015584-0e87-4ecc-8482-892c7f39209c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -183,11 +192,22 @@ namespace GameModules.Input
                 {
                     ""name"": """",
                     ""id"": ""4a5c7ed8-f23a-4b30-8d6d-77e3d2731e1b"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Dash"",
+                    ""action"": ""DashRoll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52886757-b84c-468d-94da-db58ce07ed70"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DashAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -199,7 +219,8 @@ namespace GameModules.Input
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-            m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+            m_Player_DashRoll = m_Player.FindAction("DashRoll", throwIfNotFound: true);
+            m_Player_DashAttack = m_Player.FindAction("DashAttack", throwIfNotFound: true);
         }
 
         ~@CharacterInputActions()
@@ -281,7 +302,8 @@ namespace GameModules.Input
         private readonly InputActionMap m_Player;
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Move;
-        private readonly InputAction m_Player_Dash;
+        private readonly InputAction m_Player_DashRoll;
+        private readonly InputAction m_Player_DashAttack;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -298,9 +320,13 @@ namespace GameModules.Input
             /// </summary>
             public InputAction @Move => m_Wrapper.m_Player_Move;
             /// <summary>
-            /// Provides access to the underlying input action "Player/Dash".
+            /// Provides access to the underlying input action "Player/DashRoll".
             /// </summary>
-            public InputAction @Dash => m_Wrapper.m_Player_Dash;
+            public InputAction @DashRoll => m_Wrapper.m_Player_DashRoll;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/DashAttack".
+            /// </summary>
+            public InputAction @DashAttack => m_Wrapper.m_Player_DashAttack;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -330,9 +356,12 @@ namespace GameModules.Input
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Dash.started += instance.OnDash;
-                @Dash.performed += instance.OnDash;
-                @Dash.canceled += instance.OnDash;
+                @DashRoll.started += instance.OnDashRoll;
+                @DashRoll.performed += instance.OnDashRoll;
+                @DashRoll.canceled += instance.OnDashRoll;
+                @DashAttack.started += instance.OnDashAttack;
+                @DashAttack.performed += instance.OnDashAttack;
+                @DashAttack.canceled += instance.OnDashAttack;
             }
 
             /// <summary>
@@ -347,9 +376,12 @@ namespace GameModules.Input
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
-                @Dash.started -= instance.OnDash;
-                @Dash.performed -= instance.OnDash;
-                @Dash.canceled -= instance.OnDash;
+                @DashRoll.started -= instance.OnDashRoll;
+                @DashRoll.performed -= instance.OnDashRoll;
+                @DashRoll.canceled -= instance.OnDashRoll;
+                @DashAttack.started -= instance.OnDashAttack;
+                @DashAttack.performed -= instance.OnDashAttack;
+                @DashAttack.canceled -= instance.OnDashAttack;
             }
 
             /// <summary>
@@ -398,12 +430,19 @@ namespace GameModules.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnMove(InputAction.CallbackContext context);
             /// <summary>
-            /// Method invoked when associated input action "Dash" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// Method invoked when associated input action "DashRoll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnDash(InputAction.CallbackContext context);
+            void OnDashRoll(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "DashAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnDashAttack(InputAction.CallbackContext context);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Runtime.Agents.ModuleSystem.Interface
     public interface IMovement
     {
         public bool IsMoving { get; }
-        public bool IsDashing { get; }
+        public bool IsDashAttacking { get; }
     }
 }
 

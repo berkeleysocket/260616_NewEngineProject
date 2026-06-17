@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: animation RUN
   m_EditorClassIdentifier: Assembly-CSharp::GameModules.AnimationParams.AnimationParameterSO
   m_Description: 
-  <ClipName>k__BackingField: RUN
+  <AssetName>k__BackingField: RUN

@@ -12,12 +12,12 @@ namespace Runtime.Agents.FSM
 
         protected override void OnEnter()
         {
-            DebugLogger.Log("Enter Run State");
+            DebugLogger.Log("Enter Run State", UnityEngine.Color.yellow);
         }
 
         protected override void OnExit()
         {
-            DebugLogger.Log("Exit Run State");
+            DebugLogger.Log("Exit Run State", UnityEngine.Color.yellow);
         }
 
         protected override void OnUpdate()

@@ -11,6 +11,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2fad8f1d25044cd43bbdd3d809a4e65f, type: 3}
   m_Name: animation DASH
-  m_EditorClassIdentifier: Assembly-CSharp::GameModules.AnimationParams.AnimationParameterSO
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Utilities.AssetNameSO
   m_Description: 
-  <ClipName>k__BackingField: DASH
+  <AssetName>k__BackingField: DASH

@@ -20,7 +20,7 @@ namespace Runtime.Agents.FSM
             {
                 Type stateType = Type.GetType(stateSO.ClassName);
                 IRenderer renderer = agent.GetModule<RendererModule>();
-                int animationHash = stateSO.AnimationParamSO.ClipHash;
+                int animationHash = stateSO.AnimationParamSO.AssetNameHash;
                 StateConditionSO[] conditions = stateSO.Conditions;
 
                 DebugLogger.Assert(stateType != null, "StateType is null");
@@ -48,6 +48,7 @@ namespace Runtime.Agents.FSM
         public void Update()
         {
             _currentState?.Update();
+            DebugLogger.Log($"current state : {_currentState?.ToString()}", UnityEngine.Color.red);
         }
     }
 }

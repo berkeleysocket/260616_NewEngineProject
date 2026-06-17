@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: animation IDLE
   m_EditorClassIdentifier: Assembly-CSharp::GameModules.AnimationParams.AnimationParameterSO
   m_Description: 
-  <ClipName>k__BackingField: IDLE
+  <AssetName>k__BackingField: IDLE

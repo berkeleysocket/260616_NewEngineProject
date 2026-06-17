@@ -1,5 +1,4 @@
 using Core.Utilities;
-using GameModules.AnimationParams;
 
 using UnityEngine;
 
@@ -10,7 +9,7 @@ namespace Runtime.Agents.FSM
     {
         [field: SerializeField] public string StateName { get; private set; }
         [field: SerializeField] public string ClassName { get; private set; }
-        [field: SerializeField] public AnimationParameterSO AnimationParamSO { get; private set; }
+        [field: SerializeField] public AssetNameSO AnimationParamSO { get; private set; }
         [field: SerializeField] public StateType StateIndex { get; private set; }
         [field: SerializeField] public StateConditionSO[] Conditions { get; private set; }
 

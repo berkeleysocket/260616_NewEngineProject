@@ -12,12 +12,10 @@ namespace Runtime.Agents.FSM
 
         protected override void OnEnter()
         {
-            DebugLogger.Log("Enter Idle State");
         }
 
         protected override void OnExit()
         {
-            DebugLogger.Log("Exit Idle State");
         }
 
         protected override void OnUpdate()

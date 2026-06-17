@@ -15,4 +15,5 @@ MonoBehaviour:
   m_Description: "\uD50C\uB808\uC774\uC5B4 \uCE90\uB9AD\uD130\uB97C \uC870\uC791\uD560
     \uB54C \uC785\uB825\uC744 \uBC1B\uB294 SO"
   playerMoveKeyInputChannel: {fileID: 11400000, guid: 4462d0530cd82e746962ef07eda3abc6, type: 2}
-  playerDashKeyInputChannel: {fileID: 11400000, guid: 6f6d804b28870ac4e99b4fb595f28d04, type: 2}
+  playerDashKeyInputChannel: {fileID: 11400000, guid: 6b2228579b575be4e9396578edcd0472, type: 2}
+  playerDashAttackKeyInputChannel: {fileID: 11400000, guid: fe4a9f2837dfe5547b9ed7730a601774, type: 2}
