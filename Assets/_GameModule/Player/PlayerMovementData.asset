@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerMovementData
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.ModuleSystem.SO.MovementModuleDataSO
   <MoveSpeed>k__BackingField: 4
-  <DashSpeed>k__BackingField: 10
-  <DashDuration>k__BackingField: 0.22
+  <DashSpeed>k__BackingField: 9
+  <DashDuration>k__BackingField: 1
   <DashCooldown>k__BackingField: 0.15
-  <DashAttackSpeed>k__BackingField: 13
-  <DashAttackDuration>k__BackingField: 0.3
+  <DashAttackSpeed>k__BackingField: 12
+  <DashAttackDuration>k__BackingField: 1
   <DashAttackCooldown>k__BackingField: 0.35

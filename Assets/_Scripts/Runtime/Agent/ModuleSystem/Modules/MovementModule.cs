@@ -31,11 +31,11 @@ namespace Runtime.Agents.ModuleSystem
         private CompletedDashEvent _completedDashEvent;
         private IsDashAttackingEvent _isDashAttackingEvent;
         private CompletedDashAttackEvent _completedDashAttackEvent;
+
         private Coroutine _dashCoroutine;
         private Coroutine _dashCooldownCoroutine;
         private Coroutine _dashAttackCoroutine;
         private Coroutine _dashAttackCooldownCoroutine;
-
 
         private Vector3 _velocity = Vector3.zero;
         private Vector2 _lastMoveDirection = Vector2.zero;
@@ -115,17 +115,20 @@ namespace Runtime.Agents.ModuleSystem
 
         public void Dash()
         {
-            if (!initialized || IsDashing || !_canDash) return;
+            if (!initialized || !_canDash) return;
 
             if (_dashAttackCoroutine != null)
             {
                 StopCoroutine(_dashAttackCoroutine);
-                if (_dashAttackCooldownCoroutine == null)
-                    _dashAttackCooldownCoroutine = StartCoroutine(DashAttackCooldownCoroutine());
-                _dashCoroutine = null;
+                _dashAttackCoroutine = null;
                 IsDashAttacking = false;
                 completedDashAttackChannel.RaiseEvent(_completedDashAttackEvent);
+
+                if (_dashAttackCooldownCoroutine != null) StopCoroutine(_dashAttackCooldownCoroutine);
+                _dashAttackCooldownCoroutine = StartCoroutine(DashAttackCooldownCoroutine());
             }
+
+            if (_dashCoroutine != null) return;
 
             isDashingChannel.RaiseEvent(_isDashingEvent);
             _dashCoroutine = StartCoroutine(DashCoroutine());
@@ -137,15 +140,18 @@ namespace Runtime.Agents.ModuleSystem
             _canDash = false;
             IsMoving = false;
 
-            Vector3 dashDirection = GetDashDirection();
-            _velocity = dashDirection * _dashSpeed;
+            //Vector3 dashDirection = GetDashDirection();
+            _velocity = _lastMoveDirection * _dashSpeed;
 
             yield return new WaitForSeconds(_dashDuration);
 
             IsDashing = false;
             completedDashChannel.RaiseEvent(_completedDashEvent);
+            _dashCoroutine = null;
+
             Move(_lastMoveDirection);
 
+            if (_dashCooldownCoroutine != null) StopCoroutine(_dashCooldownCoroutine);
             _dashCooldownCoroutine = StartCoroutine(DashCooldownCoroutine());
         }
 
@@ -153,23 +159,25 @@ namespace Runtime.Agents.ModuleSystem
         {
             yield return new WaitForSeconds(_dashCooldown);
             _canDash = true;
-            _dashCoroutine = null;
             _dashCooldownCoroutine = null;
         }
 
         public void DashAttack()
         {
-            if (!initialized || IsDashAttacking || !_canDashAttack) return;
+            if (!initialized || !_canDashAttack) return;
 
             if (_dashCoroutine != null)
             {
                 StopCoroutine(_dashCoroutine);
-                if (_dashCooldownCoroutine == null)
-                    _dashCooldownCoroutine = StartCoroutine(DashCooldownCoroutine());
                 _dashCoroutine = null;
                 IsDashing = false;
                 completedDashChannel.RaiseEvent(_completedDashEvent);
+
+                if (_dashCooldownCoroutine != null) StopCoroutine(_dashCooldownCoroutine);
+                _dashCooldownCoroutine = StartCoroutine(DashCooldownCoroutine());
             }
+
+            if (_dashAttackCoroutine != null) return;
 
             isDashAttackingChannel.RaiseEvent(_isDashAttackingEvent);
             _dashAttackCoroutine = StartCoroutine(DashAttackCoroutine());
@@ -188,12 +196,11 @@ namespace Runtime.Agents.ModuleSystem
 
             IsDashAttacking = false;
             completedDashAttackChannel.RaiseEvent(_completedDashAttackEvent);
-            Move(_lastMoveDirection);
-
-            yield return new WaitForSeconds(_dashAttackCooldown);
-            _canDashAttack = true;
             _dashAttackCoroutine = null;
 
+            Move(_lastMoveDirection);
+
+            if (_dashAttackCooldownCoroutine != null) StopCoroutine(_dashAttackCooldownCoroutine);
             _dashAttackCooldownCoroutine = StartCoroutine(DashAttackCooldownCoroutine());
         }
 
@@ -201,7 +208,6 @@ namespace Runtime.Agents.ModuleSystem
         {
             yield return new WaitForSeconds(_dashAttackCooldown);
             _canDashAttack = true;
-            _dashAttackCoroutine = null;
             _dashAttackCooldownCoroutine = null;
         }
 
