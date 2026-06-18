@@ -11,9 +11,7 @@ namespace Runtime.InputSystem
     public class CharacterInputReader : InputReaderBaseSO, CharacterInputActions.IPlayerActions
     {
         [Header("Publish Channels")]
-        [SerializeField] private GameEventChannelSO playerMoveKeyInputChannel;
-        [SerializeField] private GameEventChannelSO playerDashKeyInputChannel;
-        [SerializeField] private GameEventChannelSO playerDashAttackKeyInputChannel;
+        [SerializeField] private GameEventChannelSO pressKeyChannel;
 
         private CharacterInputActions _inputActions;
         private MoveKeyInputEvent _playerMoveKeyInputEvent;
@@ -27,8 +25,7 @@ namespace Runtime.InputSystem
             this._playerDashKeyInputEvent = new DashKeyInputEvent();
             this._playerDashAttackKeyInputEvent = new DashAttackKeyInputEvent();
 
-            DebugLogger.Assert(playerMoveKeyInputChannel != null, "PlayerMoveKeyInputChannel is null");
-            DebugLogger.Assert(playerDashKeyInputChannel != null, "PlayerDashKeyInputChannel is null");
+            DebugLogger.Assert(pressKeyChannel != null, "PressKeyChannel is null");
         }
 
         public override void Enable()
@@ -54,19 +51,13 @@ namespace Runtime.InputSystem
         public void OnDashRoll(InputAction.CallbackContext context)
         {
             if (context.started)
-            {
-                DebugLogger.Log("OnDashRoll", Color.violet);
-                playerDashKeyInputChannel.RaiseEvent(_playerDashKeyInputEvent);
-            }
+                pressKeyChannel.RaiseEvent(_playerDashKeyInputEvent);
         }
 
         public void OnDashAttack(InputAction.CallbackContext context)
         {
             if (context.started)
-            {
-                DebugLogger.Log("OnDashAttack", Color.violet);
-                playerDashAttackKeyInputChannel.RaiseEvent(_playerDashAttackKeyInputEvent);
-            }
+                pressKeyChannel.RaiseEvent(_playerDashAttackKeyInputEvent);
         }
 
         public void OnMove(InputAction.CallbackContext context)
@@ -76,7 +67,7 @@ namespace Runtime.InputSystem
                 Vector2 direction = context.ReadValue<Vector2>();
 
                 _playerMoveKeyInputEvent.direction = direction;
-                playerMoveKeyInputChannel.RaiseEvent(_playerMoveKeyInputEvent);
+                pressKeyChannel.RaiseEvent(_playerMoveKeyInputEvent);
             }
         }
     }

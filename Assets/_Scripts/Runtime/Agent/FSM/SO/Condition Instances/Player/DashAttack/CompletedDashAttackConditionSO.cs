@@ -1,5 +1,4 @@
 using Core.Utilities.EventChannelSystem;
-using Core.Utilities;
 using Runtime.Player;
 
 using UnityEngine;
@@ -10,12 +9,12 @@ namespace Runtime.Agents.FSM
     public class CompletedDashAttackConditionSO : StateConditionSO
     {
         [Header("Subscribe Channels")]
-        [SerializeField] private GameEventChannelSO completedDashAttackChannel;
+        [SerializeField] private GameEventChannelSO playerCompletedActionChannel;
         private bool isCompleted = false;
 
         public override void Initialize(Agent agent)
         {
-            completedDashAttackChannel.AddListener<CompletedDashAttackEvent>(OnCompletedDashAttack);
+            playerCompletedActionChannel.AddListener<CompletedDashAttackEvent>(OnCompletedDashAttack);
         }
 
         public override bool CheckCondition()
@@ -29,10 +28,6 @@ namespace Runtime.Agents.FSM
             return false;
         }
 
-        private void OnCompletedDashAttack(CompletedDashAttackEvent args)
-        {
-            DebugLogger.Log("OnCompletedDashAttack", Color.cyan);
-            isCompleted = true;
-        }
+        private void OnCompletedDashAttack(CompletedDashAttackEvent args) => isCompleted = true;
     }
 }

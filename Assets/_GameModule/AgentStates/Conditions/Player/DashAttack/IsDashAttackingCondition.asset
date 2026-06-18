@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IsDashAttackingCondition
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.FSM.IsDashAttackingConditionSO
   NextStateType: 3
-  playerIsDashAttackingEvent: {fileID: 11400000, guid: 59271dbac965c6840b9e6af1cbe42637, type: 2}
+  playerDoActionChannel: {fileID: 11400000, guid: ee700a2de5603a9428321509594154d8, type: 2}

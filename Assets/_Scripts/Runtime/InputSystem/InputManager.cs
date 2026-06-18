@@ -50,9 +50,7 @@ namespace Runtime.InputSystem
         private void TestInitialize()
         {
             Initialize();
-            DebugLogger.LogSuccess("Initialize InputManager");
             EnableReader<CharacterInputReader>();
-            DebugLogger.LogSuccess("Enable CharacterInputReader");
         }
 
         public void EnableReader<T>() where T : InputReaderBaseSO

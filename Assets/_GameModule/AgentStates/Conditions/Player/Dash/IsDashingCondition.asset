@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IsDashingCondition
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.FSM.IsDashingConditionSO
   NextStateType: 2
-  playerIsDashingEvent: {fileID: 11400000, guid: 2f6fb2f032e442e43a649facae1d2521, type: 2}
+  playerDoActionChannel: {fileID: 11400000, guid: ee700a2de5603a9428321509594154d8, type: 2}

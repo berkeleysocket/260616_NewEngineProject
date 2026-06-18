@@ -368,8 +368,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 769470447}
+  - component: {fileID: 769470448}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: CreateManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -383,13 +384,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769470446}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 943207635}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &769470448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769470446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2a048eb954d8447845be66f03c8099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.ObjectPool.CreateManager
+  createChannel: {fileID: 11400000, guid: 15ff9e0a8a075af4b9c90ebfc4c3e100, type: 2}
+  poolManagerAsset: {fileID: 11400000, guid: 07551a998b93a4c44b149dab9598d88c, type: 2}
 --- !u!1 &830982973
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,15 +451,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ModuleSystem.MovementModule
   controller: {fileID: 1319070070}
   movementData: {fileID: 11400000, guid: 50d894390ba155e418a1dab6a634af3d, type: 2}
-  moveKeyInputChannel: {fileID: 11400000, guid: 4462d0530cd82e746962ef07eda3abc6, type: 2}
-  dashKeyInputChannel: {fileID: 11400000, guid: 6b2228579b575be4e9396578edcd0472, type: 2}
-  dashAttackKeyInputChannel: {fileID: 11400000, guid: fe4a9f2837dfe5547b9ed7730a601774, type: 2}
-  completedDashChannel: {fileID: 11400000, guid: 678d6d08ce696174c83c9e15f3881834, type: 2}
-  isDashingChannel: {fileID: 11400000, guid: 2f6fb2f032e442e43a649facae1d2521, type: 2}
-  completedDashAttackChannel: {fileID: 11400000, guid: 97c2065b9f2c1384a93bcadfd4acf478, type: 2}
-  isDashAttackingChannel: {fileID: 11400000, guid: 59271dbac965c6840b9e6af1cbe42637, type: 2}
+  pressKeyChannel: {fileID: 11400000, guid: 6813d1d9d57669d4388e851a9f2f1a4f, type: 2}
+  playerCompletedActionChannel: {fileID: 11400000, guid: c8c0d371200c6ef4b914cd553f4b34aa, type: 2}
+  playerDoActionChannel: {fileID: 11400000, guid: ee700a2de5603a9428321509594154d8, type: 2}
+  createChannel: {fileID: 11400000, guid: 15ff9e0a8a075af4b9c90ebfc4c3e100, type: 2}
   vfxFootstepAssetNameSO: {fileID: 11400000, guid: fa30faac76e346242ba40a7e9de6a030, type: 2}
-  vfxDashAssetNameSO: {fileID: 11400000, guid: 97f4dce9658c28547ba799f7bbeced2a, type: 2}
+  vfxDashSO: {fileID: 11400000, guid: 24bcb35a3d06c0e46858931ab66f09c2, type: 2}
+  vfxDashAttackSO: {fileID: 11400000, guid: fa356143c90ef8848ad0adcdc359d5c9, type: 2}
 --- !u!1 &918611735
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,6 +548,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!1 &943207634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 943207635}
+  - component: {fileID: 943207636}
+  m_Layer: 0
+  m_Name: System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &943207635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943207634}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 769470447}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &943207636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943207634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1ed2240ee1bdc4797dd6c7f9cdc4a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.SystemManager
 --- !u!1 &1319070068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,4 +1196,4 @@ SceneRoots:
   - {fileID: 139565097}
   - {fileID: 1319070069}
   - {fileID: 1559716067}
-  - {fileID: 769470447}
+  - {fileID: 943207635}

@@ -1,5 +1,6 @@
-using Core.ObjectPool;
+using Core.Effects;
 using Core.Utilities.EventChannelSystem;
+
 using UnityEngine;
 
 namespace Core.ObjectPool
@@ -9,17 +10,18 @@ namespace Core.ObjectPool
         [SerializeField] private GameEventChannelSO createChannel;
         [SerializeField] private PoolManagerSO poolManagerAsset;
 
-        private void Awake()
-        {
-            createChannel.AddListener<ShowPoolingVfx>(HandleShowPoolingVfx);
-        }
-
         private void OnDestroy()
         {
-            createChannel.RemoveListener<ShowPoolingVfx>(HandleShowPoolingVfx);
+            createChannel.RemoveListener<ShowPoolingVfxEvent>(HandleShowPoolingVfx);
         }
 
-        private void HandleShowPoolingVfx(ShowPoolingVfx evt)
+        public void Initialize()
+        {
+            poolManagerAsset.InitializePool(transform);
+            createChannel.AddListener<ShowPoolingVfxEvent>(HandleShowPoolingVfx);
+        }
+
+        private void HandleShowPoolingVfx(ShowPoolingVfxEvent evt)
         {
             PoolableVfx vfx = poolManagerAsset.Pop<PoolableVfx>(evt.ItemData);
             vfx.OnVfxEnd += HandleVfxEnd;

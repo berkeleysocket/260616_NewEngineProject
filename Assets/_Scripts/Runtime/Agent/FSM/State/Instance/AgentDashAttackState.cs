@@ -12,12 +12,10 @@ namespace Runtime.Agents.FSM
 
         protected override void OnEnter()
         {
-            DebugLogger.Log("Enter DashAttack State");
         }
 
         protected override void OnExit()
         {
-            DebugLogger.Log("Exit DashAttack State");
         }
 
         protected override void OnUpdate()

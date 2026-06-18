@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CompletedDashCondition
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.FSM.CompletedDashConditionSO
   NextStateType: 1
-  completedDashChannel: {fileID: 11400000, guid: 678d6d08ce696174c83c9e15f3881834, type: 2}
+  playerCompletedActionChannel: {fileID: 11400000, guid: c8c0d371200c6ef4b914cd553f4b34aa, type: 2}

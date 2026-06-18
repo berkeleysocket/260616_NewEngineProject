@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77c2567e924fa2e43b41af264ad7370f, type: 3}
-  m_Name: IsDashAttackingChannel
+  m_Name: PresseKeyChannel
   m_EditorClassIdentifier: Assembly-CSharp::Core.Utilities.EventChannelSystem.GameEventChannelSO
-  m_Description: 
+  m_Description: "\uD0A4\uB97C \uC785\uB825\uBC1B\uC558\uC744 \uB54C \uD638\uCD9C\uB418\uB294
+    \uC774\uBCA4\uD2B8"

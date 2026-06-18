@@ -13,7 +13,6 @@ namespace Runtime.Agents.ModuleSystem
         private void Awake()
         {
             Initialize();
-            DebugLogger.LogSuccess($"Initialize {gameObject.name}");
         }
         private void Initialize()
         {

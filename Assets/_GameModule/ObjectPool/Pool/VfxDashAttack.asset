@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: VfxDashAttack
   m_EditorClassIdentifier: Assembly-CSharp::Core.ObjectPool.PoolItemSO
   <Prefab>k__BackingField: {fileID: 1180703309672919607, guid: 219032b2db90b964ba1035d8390ecfcb, type: 3}
-  <InitCount>k__BackingField: 5
+  <InitCount>k__BackingField: 2

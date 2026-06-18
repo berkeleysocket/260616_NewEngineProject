@@ -1,3 +1,5 @@
+using Core;
+using Core.ObjectPool;
 using Core.Utilities;
 using Core.Utilities.EventChannelSystem;
 using Runtime.Agents.ModuleSystem.Interface;
@@ -15,19 +17,18 @@ namespace Runtime.Agents.ModuleSystem
         [SerializeField] private MovementModuleDataSO movementData;
 
         [Header("Subscribe Channels")]
-        [SerializeField] private GameEventChannelSO moveKeyInputChannel;
-        [SerializeField] private GameEventChannelSO dashKeyInputChannel;
-        [SerializeField] private GameEventChannelSO dashAttackKeyInputChannel;
+        [SerializeField] private GameEventChannelSO pressKeyChannel;
+
 
         [Header("Publish Channels")]
-        [SerializeField] private GameEventChannelSO completedDashChannel;
-        [SerializeField] private GameEventChannelSO isDashingChannel;
-        [SerializeField] private GameEventChannelSO completedDashAttackChannel;
-        [SerializeField] private GameEventChannelSO isDashAttackingChannel;
+        [SerializeField] private GameEventChannelSO playerCompletedActionChannel;
+        [SerializeField] private GameEventChannelSO playerDoActionChannel;
+        [SerializeField] private GameEventChannelSO createChannel;
 
         [Header("Vfx List")]
         [SerializeField] private AssetNameSO vfxFootstepAssetNameSO;
-        [SerializeField] private AssetNameSO vfxDashAssetNameSO;
+        [SerializeField] private PoolItemSO vfxDashSO;
+        [SerializeField] private PoolItemSO vfxDashAttackSO;
 
         private IsDashingEvent _isDashingEvent;
         private CompletedDashEvent _completedDashEvent;
@@ -83,24 +84,21 @@ namespace Runtime.Agents.ModuleSystem
             }
 
             DebugLogger.Assert(controller != null, "Controller is null");
-            DebugLogger.Assert(moveKeyInputChannel != null, "PlayerMoveKeyInputChannel is null");
-            DebugLogger.Assert(dashKeyInputChannel != null, "PlayerDashKeyInputChannel is null");
-            DebugLogger.Assert(completedDashChannel != null, "PlayerCompletedDashChannel is null");
-            DebugLogger.Assert(isDashingChannel != null, "PlayerIsDashingChannel is null");
-            DebugLogger.Assert(completedDashAttackChannel != null, "PlayerCompletedDashAttackChannel is null");
-            DebugLogger.Assert(isDashAttackingChannel != null, "PlayerIsDashAttackingChannel is null");
+            DebugLogger.Assert(pressKeyChannel != null, "PlayerMoveKeyInputChannel is null");
+            DebugLogger.Assert(pressKeyChannel != null, "PlayerDashKeyInputChannel is null");
+            DebugLogger.Assert(playerCompletedActionChannel != null, "PlayerCompletedDashChannel is null");
+            DebugLogger.Assert(playerDoActionChannel != null, "PlayerIsDashingChannel is null");
             DebugLogger.Assert(_vfxModule != null, "VfxModule is null");
             DebugLogger.Assert(vfxFootstepAssetNameSO != null, "VfxFootstepAssetNameSO is null");
 
-            moveKeyInputChannel.AddListener<MoveKeyInputEvent>(OnMoveKeyInput);
-            dashKeyInputChannel.AddListener<DashKeyInputEvent>(OnDashKeyInput);
-            dashAttackKeyInputChannel.AddListener<DashAttackKeyInputEvent>(OnDashAttackKeyInput);
+            pressKeyChannel.AddListener<MoveKeyInputEvent>(OnMoveKeyInput);
+            pressKeyChannel.AddListener<DashKeyInputEvent>(OnDashKeyInput);
+            pressKeyChannel.AddListener<DashAttackKeyInputEvent>(OnDashAttackKeyInput);
         }
 
         private void Start()
         {
             _vfxModule?.StopVfx(vfxFootstepAssetNameSO.AssetNameHash);
-            _vfxModule?.StopVfx(vfxDashAssetNameSO.AssetNameHash);
         }
 
         private void Move(Vector2 direction)
@@ -132,7 +130,7 @@ namespace Runtime.Agents.ModuleSystem
                 StopCoroutine(_dashAttackCoroutine);
                 _dashAttackCoroutine = null;
                 IsDashAttacking = false;
-                completedDashAttackChannel.RaiseEvent(_completedDashAttackEvent);
+                playerCompletedActionChannel.RaiseEvent(_completedDashAttackEvent);
 
                 if (_dashAttackCooldownCoroutine != null) StopCoroutine(_dashAttackCooldownCoroutine);
                 _dashAttackCooldownCoroutine = StartCoroutine(DashAttackCooldownCoroutine());
@@ -140,7 +138,7 @@ namespace Runtime.Agents.ModuleSystem
 
             if (_dashCoroutine != null) return;
 
-            isDashingChannel.RaiseEvent(_isDashingEvent);
+            playerDoActionChannel.RaiseEvent(_isDashingEvent);
             _dashCoroutine = StartCoroutine(DashCoroutine());
         }
 
@@ -152,13 +150,14 @@ namespace Runtime.Agents.ModuleSystem
 
             Vector3 dashDirection = GetDashDirection();
             RotateTo(dashDirection);
-            _vfxModule.PlayDashVfx(transform.position, owner.transform.rotation);
+            CreateEvents.ShowPoolingVfxEvent.Initialize(vfxDashSO, owner.transform.position, owner.transform.rotation);
+            createChannel.RaiseEvent(CreateEvents.ShowPoolingVfxEvent);
             _velocity = dashDirection * _dashSpeed;
 
             yield return new WaitForSeconds(_dashDuration);
 
             IsDashing = false;
-            completedDashChannel.RaiseEvent(_completedDashEvent);
+            playerCompletedActionChannel.RaiseEvent(_completedDashEvent);
             _dashCoroutine = null;
 
             Move(_lastMoveDirection);
@@ -183,7 +182,7 @@ namespace Runtime.Agents.ModuleSystem
                 StopCoroutine(_dashCoroutine);
                 _dashCoroutine = null;
                 IsDashing = false;
-                completedDashChannel.RaiseEvent(_completedDashEvent);
+                playerCompletedActionChannel.RaiseEvent(_completedDashEvent);
 
                 if (_dashCooldownCoroutine != null) StopCoroutine(_dashCooldownCoroutine);
                 _dashCooldownCoroutine = StartCoroutine(DashCooldownCoroutine());
@@ -191,7 +190,8 @@ namespace Runtime.Agents.ModuleSystem
 
             if (_dashAttackCoroutine != null) return;
 
-            isDashAttackingChannel.RaiseEvent(_isDashAttackingEvent);
+            playerDoActionChannel.RaiseEvent(_isDashAttackingEvent);
+
             _dashAttackCoroutine = StartCoroutine(DashAttackCoroutine());
         }
 
@@ -203,13 +203,14 @@ namespace Runtime.Agents.ModuleSystem
 
             Vector3 dashDirection = GetDashDirection();
             RotateTo(dashDirection);
-            _vfxModule.PlayDashAttackVfx(transform.position, owner.transform.rotation);
+            CreateEvents.ShowPoolingVfxEvent.Initialize(vfxDashAttackSO, owner.transform.position, owner.transform.rotation);
+            createChannel.RaiseEvent(CreateEvents.ShowPoolingVfxEvent);
             _velocity = dashDirection * _dashAttackSpeed;
 
             yield return new WaitForSeconds(_dashAttackDuration);
 
             IsDashAttacking = false;
-            completedDashAttackChannel.RaiseEvent(_completedDashAttackEvent);
+            playerCompletedActionChannel.RaiseEvent(_completedDashAttackEvent);
             _dashAttackCoroutine = null;
 
             Move(_lastMoveDirection);

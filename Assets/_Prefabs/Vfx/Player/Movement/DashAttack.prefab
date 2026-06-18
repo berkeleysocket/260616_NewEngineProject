@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1911032819509229605}
+  - component: {fileID: -8776217721703469140}
   - component: {fileID: 7856960384933904203}
   m_Layer: 0
   m_Name: DashAttack
@@ -33,6 +34,20 @@ Transform:
   - {fileID: 4633113070158534639}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8776217721703469140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180703309672919607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f10915c1aba0a4d44b0b4d3111a7e62d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Effects.PoolableVfx
+  <Item>k__BackingField: {fileID: 11400000, guid: fa356143c90ef8848ad0adcdc359d5c9, type: 2}
+  effectObject: {fileID: 1180703309672919607}
 --- !u!114 &7856960384933904203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.Effects.PlayParticleVFX
   <VfxName>k__BackingField: {fileID: 11400000, guid: 3a316c6d8c7a5f640a72b86cfaef5310, type: 2}
+  <VfxDuration>k__BackingField: 0.35
   particles:
   - {fileID: 6241289267598772252}
 --- !u!1 &2786016409612323593
@@ -76,7 +92,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7660445, z: -0.6427876, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1911032819509229605}

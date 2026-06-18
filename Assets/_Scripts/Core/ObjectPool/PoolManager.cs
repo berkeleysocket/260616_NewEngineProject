@@ -1,3 +1,4 @@
+using Core.Utilities;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +29,12 @@ namespace Core.ObjectPool
         public T Pop<T>(PoolItemSO item) where T : IPoolable
         {
             if (_pools.TryGetValue(item, out Pool pool))
+            {
+                DebugLogger.LogSuccess($"Pop : {typeof(T).Name}");
                 return (T)pool.Pop();
+            }
+            else
+                DebugLogger.LogError($"{typeof(T).Name}은 PoolList에 등록되어있지 않습니다!");
 
             return default;
         }
@@ -36,7 +42,12 @@ namespace Core.ObjectPool
         public void Push(IPoolable item)
         {
             if (_pools.TryGetValue(item.Item, out Pool pool))
+            {
+                DebugLogger.LogSuccess($"Pop : {item.GetType().Name}");
                 pool.Push(item);
+            }
+            else
+                DebugLogger.LogError($"{item.GetType().Name}은 PoolList에 등록되어있지 않습니다!");
         }
     }
 }

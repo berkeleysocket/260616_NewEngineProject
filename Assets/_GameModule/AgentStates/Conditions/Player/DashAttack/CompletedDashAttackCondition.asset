@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CompletedDashAttackCondition
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.FSM.DashAttackCompletedConditionSO
   NextStateType: 1
-  completedDashAttackChannel: {fileID: 11400000, guid: 97c2065b9f2c1384a93bcadfd4acf478, type: 2}
+  playerCompletedActionChannel: {fileID: 11400000, guid: c8c0d371200c6ef4b914cd553f4b34aa, type: 2}
