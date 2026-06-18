@@ -45,18 +45,9 @@ namespace Runtime.Agents.ModuleSystem
             }
         }
 
-        public void PlayDashVfx(Vector3 position, Quaternion rotation)
+        public void InstantiateAndPlayVfx()
         {
-            GameObject dashEffect = Instantiate(dashEffectPrefab, position, rotation);
-            IPlayableVFX vfxCompo = dashEffect.GetComponent<IPlayableVFX>();
-            vfxCompo.PlayVFX();
-        }
 
-        public void PlayDashAttackVfx(Vector3 position, Quaternion rotation)
-        {
-            GameObject dashAttackEffect = Instantiate(dashAttackEffectPrefab, position, rotation);
-            IPlayableVFX vfxCompo = dashAttackEffect.GetComponent<IPlayableVFX>();
-            vfxCompo.PlayVFX();
         }
 
         public void StopVfx(int hash)

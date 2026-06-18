@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Core.Pool
+namespace Core.ObjectPool
 {
     public class Pool
     {
         private readonly Stack<IPoolable> _pool;
         private readonly GameObject _prefab;
         private readonly Transform _parentTrm;
+
         public Pool(IPoolable poolable, Transform parent, int initCount)
         {
             _pool = new Stack<IPoolable>(initCount);

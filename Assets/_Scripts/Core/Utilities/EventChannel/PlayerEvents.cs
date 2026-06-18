@@ -4,7 +4,10 @@ using UnityEngine;
 
 namespace Runtime.Player
 {
-    public class PlayerEvent { };
+    public class PlayerEvents 
+    { 
+    
+    }
 
     public class MoveKeyInputEvent : GameEvent
     {

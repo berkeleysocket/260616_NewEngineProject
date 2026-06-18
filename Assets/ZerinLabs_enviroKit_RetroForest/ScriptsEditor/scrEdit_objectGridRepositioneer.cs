@@ -29,7 +29,7 @@ public class scrEdit_objectGridRepositioneer : ScriptableWizard
         GUILayout.Label("Information:", EditorStyles.boldLabel);
 
         EditorStyles.label.wordWrap = true;
-        GUILayout.Label("This script snaps any number of selected object to a grid based on the 'step units' defined by the user.\nYou can set the axis where you want to snap the objects using the 'Axis' checkboxes.", EditorStyles.label);
+        GUILayout.Label("This script snaps any number of selected Prefab to a grid based on the 'step units' defined by the user.\nYou can set the axis where you want to snap the objects using the 'Axis' checkboxes.", EditorStyles.label);
         
         GUILayout.Space(10);
 
