@@ -9,9 +9,9 @@ using UnityEngine;
 
 namespace Runtime.Agents.ModuleSystem
 {
-    [RequireComponent(typeof(CharacterController))]
     public class MovementModule : AbstractModule, IMovement
     {
+        [SerializeField] CharacterController controller;
         [SerializeField] private MovementModuleDataSO movementData;
 
         [Header("Subscribe Channels")]
@@ -25,13 +25,15 @@ namespace Runtime.Agents.ModuleSystem
         [SerializeField] private GameEventChannelSO completedDashAttackChannel;
         [SerializeField] private GameEventChannelSO isDashAttackingChannel;
 
-        private CharacterController _controller;
+        [Header("Vfx List")]
+        [SerializeField] private AssetNameSO vfxFootstepAssetNameSO;
+        [SerializeField] private AssetNameSO vfxDashAssetNameSO;
 
         private IsDashingEvent _isDashingEvent;
         private CompletedDashEvent _completedDashEvent;
         private IsDashAttackingEvent _isDashAttackingEvent;
         private CompletedDashAttackEvent _completedDashAttackEvent;
-
+        private VfxModule _vfxModule;
         private Coroutine _dashCoroutine;
         private Coroutine _dashCooldownCoroutine;
         private Coroutine _dashAttackCoroutine;
@@ -58,13 +60,12 @@ namespace Runtime.Agents.ModuleSystem
         private void FixedUpdate()
         {
             if (initialized)
-                _controller.Move(_velocity * Time.fixedDeltaTime);
+                controller.Move(_velocity * Time.fixedDeltaTime);
         }
 
         protected override void OnInitialize()
         {
-            this._controller = GetComponent<CharacterController>();
-
+            this._vfxModule = owner.GetModule<VfxModule>();
             this._isDashingEvent = new IsDashingEvent();
             this._completedDashEvent = new CompletedDashEvent();
             this._isDashAttackingEvent = new IsDashAttackingEvent();
@@ -81,17 +82,25 @@ namespace Runtime.Agents.ModuleSystem
                 this._dashAttackCooldown = movementData.DashAttackCooldown;
             }
 
-            DebugLogger.Assert(_controller != null, "Controller is null");
+            DebugLogger.Assert(controller != null, "Controller is null");
             DebugLogger.Assert(moveKeyInputChannel != null, "PlayerMoveKeyInputChannel is null");
             DebugLogger.Assert(dashKeyInputChannel != null, "PlayerDashKeyInputChannel is null");
             DebugLogger.Assert(completedDashChannel != null, "PlayerCompletedDashChannel is null");
             DebugLogger.Assert(isDashingChannel != null, "PlayerIsDashingChannel is null");
             DebugLogger.Assert(completedDashAttackChannel != null, "PlayerCompletedDashAttackChannel is null");
             DebugLogger.Assert(isDashAttackingChannel != null, "PlayerIsDashAttackingChannel is null");
+            DebugLogger.Assert(_vfxModule != null, "VfxModule is null");
+            DebugLogger.Assert(vfxFootstepAssetNameSO != null, "VfxFootstepAssetNameSO is null");
 
             moveKeyInputChannel.AddListener<MoveKeyInputEvent>(OnMoveKeyInput);
             dashKeyInputChannel.AddListener<DashKeyInputEvent>(OnDashKeyInput);
             dashAttackKeyInputChannel.AddListener<DashAttackKeyInputEvent>(OnDashAttackKeyInput);
+        }
+
+        private void Start()
+        {
+            _vfxModule?.StopVfx(vfxFootstepAssetNameSO.AssetNameHash);
+            _vfxModule?.StopVfx(vfxDashAssetNameSO.AssetNameHash);
         }
 
         private void Move(Vector2 direction)
@@ -101,6 +110,7 @@ namespace Runtime.Agents.ModuleSystem
             if (IsDashing || IsDashAttacking) return;
 
             _velocity = new Vector3(direction.x, 0, direction.y) * _moveSpeed;
+            _vfxModule?.PlayVfx(vfxFootstepAssetNameSO.AssetNameHash);
             RotateTo(_velocity);
 
             IsMoving = direction.x != 0f || direction.y != 0f;
@@ -142,6 +152,7 @@ namespace Runtime.Agents.ModuleSystem
 
             Vector3 dashDirection = GetDashDirection();
             RotateTo(dashDirection);
+            _vfxModule.PlayDashVfx(transform.position, owner.transform.rotation);
             _velocity = dashDirection * _dashSpeed;
 
             yield return new WaitForSeconds(_dashDuration);
@@ -192,6 +203,7 @@ namespace Runtime.Agents.ModuleSystem
 
             Vector3 dashDirection = GetDashDirection();
             RotateTo(dashDirection);
+            _vfxModule.PlayDashAttackVfx(transform.position, owner.transform.rotation);
             _velocity = dashDirection * _dashAttackSpeed;
 
             yield return new WaitForSeconds(_dashAttackDuration);

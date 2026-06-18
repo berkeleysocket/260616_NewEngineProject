@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Core.Utilities.EventChannelSystem
 {
-    [CreateAssetMenu(fileName = "GameEventChannel", menuName = "Utilities/GameEventChannelSO")]
+    [CreateAssetMenu(fileName = "GameEventChannel", menuName = "SO/Utilities/GameEventChannelSO")]
     public class GameEventChannelSO : DescriptionSO
     {
         private Dictionary<Type, Action<GameEvent>> _events = new();
