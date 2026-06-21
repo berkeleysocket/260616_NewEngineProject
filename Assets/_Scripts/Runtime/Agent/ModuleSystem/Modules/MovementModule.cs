@@ -141,7 +141,7 @@ namespace Runtime.Agents.ModuleSystem
 
             playerDoActionChannel.RaiseEvent(_isDashingEvent);
             _dashCoroutine = StartCoroutine(DashCoroutine());
-            GameManager.Instance.SoundManager.PlayEffect(SfxType.Player_Dash);
+            //GameManager.Instance.SoundManager.PlayEffect(SfxType.Player_Dash);
         }
 
         private IEnumerator DashCoroutine()
