@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 28579149}
   - component: {fileID: 28579148}
   m_Layer: 0
-  m_Name: Water (2)
+  m_Name: WaterPlane (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -528,13 +528,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28579147}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.72, y: -1.4, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -33.001183, y: -6.48427, z: -0.40695}
   m_LocalScale: {x: 4, y: 1, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1367220018}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 476590492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &41245232
 PrefabInstance:
@@ -1603,6 +1603,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX_Arcade_03
       objectReference: {fileID: 0}
+    - target: {fileID: 3022102558446658867, guid: cd3d579a2d65b3241a1812f639db37ec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6864860825588444682, guid: cd3d579a2d65b3241a1812f639db37ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2085,6 +2089,10 @@ PrefabInstance:
     - target: {fileID: 4364062416287365583, guid: fe2205740225ab04bb07d3c6308b7c8b, type: 3}
       propertyPath: m_Name
       value: VFX_Arcade_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364062416287365583, guid: fe2205740225ab04bb07d3c6308b7c8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6488229855707013690, guid: fe2205740225ab04bb07d3c6308b7c8b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6115,6 +6123,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4865701416027307351, guid: fcd303cbb5e73de4a85059ee0eb839c3, type: 3}
   m_PrefabInstance: {fileID: 469573509}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &476590491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 476590492}
+  m_Layer: 0
+  m_Name: WaterPlane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &476590492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476590491}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.67596, y: 38.28175, z: -13.10772}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1187212347}
+  - {fileID: 1005224751}
+  - {fileID: 28579151}
+  - {fileID: 1432969844}
+  m_Father: {fileID: 1377183862}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &477223615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7520,6 +7563,10 @@ PrefabInstance:
     - target: {fileID: 467751860875805754, guid: 7c6d9bb9c8994364dbe5ba2e32dd4d13, type: 3}
       propertyPath: m_Name
       value: VFX_Classic_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 467751860875805754, guid: 7c6d9bb9c8994364dbe5ba2e32dd4d13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2191401658820043353, guid: 7c6d9bb9c8994364dbe5ba2e32dd4d13, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12848,7 +12895,7 @@ GameObject:
   - component: {fileID: 1005224749}
   - component: {fileID: 1005224748}
   m_Layer: 0
-  m_Name: Water (1)
+  m_Name: WaterPlane (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12941,13 +12988,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005224747}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.5, y: -1.4, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 34.21882, y: -6.48427, z: -0.40695}
   m_LocalScale: {x: 4, y: 1, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2079849096}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 476590492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1009568984
 PrefabInstance:
@@ -15094,6 +15141,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX_Arcade_02
       objectReference: {fileID: 0}
+    - target: {fileID: 4367466542359643468, guid: c92836c3a8e05ad4494f15363d4534b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8677417325618904642, guid: c92836c3a8e05ad4494f15363d4534b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -15338,7 +15389,7 @@ GameObject:
   - component: {fileID: 1187212345}
   - component: {fileID: 1187212344}
   m_Layer: 0
-  m_Name: Water
+  m_Name: WaterPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15431,13 +15482,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187212343}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.4, z: 33.01}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.71882, y: -6.48427, z: 32.60305}
   m_LocalScale: {x: 10.8, y: 1, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 934172148}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 476590492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1196735424
 PrefabInstance:
@@ -17627,6 +17678,7 @@ Transform:
   - {fileID: 2050884400}
   - {fileID: 904019995}
   - {fileID: 5449467336358601516}
+  - {fileID: 476590492}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1401247436
@@ -18022,7 +18074,7 @@ GameObject:
   - component: {fileID: 1432969842}
   - component: {fileID: 1432969841}
   m_Layer: 0
-  m_Name: Water (3)
+  m_Name: WaterPlane (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18115,13 +18167,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432969840}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.4, z: -33.62}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.71882, y: -6.48427, z: -34.026947}
   m_LocalScale: {x: 10.8, y: 1, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 18459288}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 476590492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1447354324
 PrefabInstance:
@@ -19374,6 +19426,10 @@ PrefabInstance:
     - target: {fileID: 8782009059513614302, guid: 171dda363e9efd94ca9bc63e38ca9658, type: 3}
       propertyPath: m_Name
       value: VFX_Blood_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8782009059513614302, guid: 171dda363e9efd94ca9bc63e38ca9658, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24738,6 +24794,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX_Blood_02
       objectReference: {fileID: 0}
+    - target: {fileID: 5669246471909640947, guid: bfd016bff164dfc4aac33a0563922772, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8477969996674303904, guid: bfd016bff164dfc4aac33a0563922772, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -25112,6 +25172,10 @@ PrefabInstance:
     - target: {fileID: 2957842864923083962, guid: ace9fc22d4885204fad19db7b31cf379, type: 3}
       propertyPath: m_Name
       value: VFX_Poison_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957842864923083962, guid: ace9fc22d4885204fad19db7b31cf379, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3700851490151318324, guid: ace9fc22d4885204fad19db7b31cf379, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27924,10 +27988,6 @@ SceneRoots:
   - {fileID: 1319070069}
   - {fileID: 943207635}
   - {fileID: 1377183862}
-  - {fileID: 1187212347}
-  - {fileID: 1005224751}
-  - {fileID: 28579151}
-  - {fileID: 1432969844}
   - {fileID: 149154519}
   - {fileID: 1179864446}
   - {fileID: 121750441}
