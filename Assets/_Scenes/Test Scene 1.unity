@@ -6026,7 +6026,7 @@ Transform:
   m_GameObject: {fileID: 476590491}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.67596, y: 38.28175, z: -13.10772}
+  m_LocalPosition: {x: -17.67596, y: 36.97, z: -13.10772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11219,7 +11219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AgentCamera
   target: {fileID: 1319070069}
-  smoothTime: 0.3
+  smoothTime: 1.5
 --- !u!114 &918611737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11244,7 +11244,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 92.5
+    FieldOfView: 95
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -22077,7 +22077,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 92.5
+  field of view: 95
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -23574,6 +23574,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2979119349426861301, guid: 3dbd6b8632dc414428c58eb3aedaec35, type: 3}
   m_PrefabInstance: {fileID: 1885827870}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1894250779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1894250780}
+  m_Layer: 0
+  m_Name: Enemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1894250780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894250779}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.32981, y: 4.51719, z: -6.18168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1894661164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27706,3 +27737,4 @@ SceneRoots:
   - {fileID: 1319070069}
   - {fileID: 943207635}
   - {fileID: 1377183862}
+  - {fileID: 1894250780}

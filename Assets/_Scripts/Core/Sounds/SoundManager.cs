@@ -1,5 +1,4 @@
 using Core.Utilities;
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,29 +13,36 @@ namespace Core.Sounds
 
         private AudioSource sfxSource;
 
-        private Dictionary<SfxType, AudioClip> sfxDict;
+        private Dictionary<SfxType, SfxSO> sfxDict;
+
+        private void Awake()
+        {
+            if (instance == null) instance = this;
+            else Destroy(gameObject);
+        }
 
         public void Initialize()
         {
             sfxSource = GetComponent<AudioSource>();
 
-            sfxDict = new Dictionary<SfxType, AudioClip>();
-            foreach(var sfx in sfxClips)
-                sfxDict[sfx.Type] = sfx.Clip;
+            sfxDict = new Dictionary<SfxType, SfxSO>();
+            foreach (var sfx in sfxClips)
+            {
+                if (sfx != null)
+                    sfxDict[sfx.Type] = sfx;
+            }
         }
 
         public void PlayEffect(SfxType sfxType)
         {
-            if (sfxDict.TryGetValue(sfxType, out var clip))
-                sfxSource.PlayOneShot(clip);
+            if (sfxDict.TryGetValue(sfxType, out var sfxData))
+            {
+                sfxSource.PlayOneShot(sfxData.Clip, sfxData.Volume);
+            }
             else
-                DebugLogger.LogWarning("SFX not found in Dictionary!");
-        }
-
-        public AudioSource GetEffectsSource()
-        {
-            throw new System.NotImplementedException();
+            {
+                DebugLogger.LogWarning($"SFX [{sfxType}] not found in Dictionary!");
+            }
         }
     }
 }
-
