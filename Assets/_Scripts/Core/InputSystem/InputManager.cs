@@ -5,19 +5,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Runtime.InputSystem
+namespace Core.InputSystem
 {
-    public class InputManager : MonoSingleton<InputManager>
+    public class InputManager : MonoBehaviour
     {
         [SerializeField] private InputReaderBaseSO[] readerRegistry;
         private Dictionary<Type, InputReaderBaseSO> _readers;
         private Dictionary<Type, bool> _isReaderRegistered;
         private CharacterInputActions _inputActions;
-
-        private void Awake()
-        {
-            TestInitialize();
-        }
 
         private void OnDisable()
         {
@@ -45,12 +40,14 @@ namespace Runtime.InputSystem
             }
 
             DebugLogger.Assert(readerRegistry != null && readerRegistry.Length > 0, "ReaderRegistry is null");
+
+            TestInitialize();
         }
 
         private void TestInitialize()
         {
-            Initialize();
-            EnableReader<CharacterInputReader>();
+            EnableReader<CharacterInputReaderSO>();
+            DebugLogger.Log("테스트 코드 삭제하기");
         }
 
         public void EnableReader<T>() where T : InputReaderBaseSO

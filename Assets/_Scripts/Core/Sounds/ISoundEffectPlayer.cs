@@ -1,7 +1,7 @@
-using UnityEngine;
-
-public interface ISoundEffectPlayer
+namespace Core.Sounds
 {
-    void PlayEffect(AudioClip clip);
-    void PlayEffectRandomized(params AudioClip[] clips);
+    public interface ISoundEffectPlayer : IInitializable
+    {
+        void PlayEffect(SfxType clip);
+    }
 }

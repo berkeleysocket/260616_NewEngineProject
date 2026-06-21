@@ -1,27 +1,34 @@
+using Core.InputSystem;
 using Core.ObjectPool;
+using Core.Sounds;
+using Core.Utilities;
+
 using UnityEngine;
 
 namespace Core
 {
-    public class SystemManager : MonoBehaviour
+    public class GameManager : MonoSingleton<GameManager>
     {
-        public static SystemManager Instance 
+        public static GameManager Instance 
         { 
             get
             {
                 if(_instance == null)
                 {
                     GameObject go = new GameObject();
-                    SystemManager instance = go.AddComponent<SystemManager>();
-                    go.name = typeof(SystemManager).Name;
+                    GameManager instance = go.AddComponent<GameManager>();
+                    go.name = typeof(GameManager).Name;
                     _instance = instance;
                 }
 
                 return _instance;
             }
         }
-        public static SystemManager _instance;
+
+        public static GameManager _instance;
         public CreateManager CreateManager { get; private set; }
+        public InputManager InputManager { get; private set; }
+        public ISoundEffectPlayer SoundManager { get; private set; }
 
         private void Awake()
         {
@@ -42,7 +49,11 @@ namespace Core
         private void Initialize()
         {
             CreateManager = GetComponentInChildren<CreateManager>();
+            InputManager = GetComponentInChildren<InputManager>();
+            SoundManager = GetComponentInChildren<ISoundEffectPlayer>();
             CreateManager.Initialize();
+            InputManager.Initialize();
+            SoundManager.Initialize();
         }
     }
 }

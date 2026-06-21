@@ -2,13 +2,14 @@ using Core.Utilities;
 using Core.Utilities.EventChannelSystem;
 using GameModules.InputActions;
 using Runtime.Player;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Runtime.InputSystem
+namespace Core.InputSystem
 {
-    [CreateAssetMenu(fileName = "CharacterInputReader", menuName = "InputReader/CharacterInputReader")]
-    public class CharacterInputReader : InputReaderBaseSO, CharacterInputActions.IPlayerActions
+    [CreateAssetMenu(fileName = "CharacterInputReader", menuName = "SO/InputReader/CharacterInputReaderSO")]
+    public class CharacterInputReaderSO : InputReaderBaseSO, CharacterInputActions.IPlayerActions
     {
         [Header("Publish Channels")]
         [SerializeField] private GameEventChannelSO pressKeyChannel;

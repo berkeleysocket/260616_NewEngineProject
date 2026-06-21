@@ -1,5 +1,6 @@
 using Core;
 using Core.ObjectPool;
+using Core.Sounds;
 using Core.Utilities;
 using Core.Utilities.EventChannelSystem;
 using Runtime.Agents.ModuleSystem.Interface;
@@ -140,6 +141,7 @@ namespace Runtime.Agents.ModuleSystem
 
             playerDoActionChannel.RaiseEvent(_isDashingEvent);
             _dashCoroutine = StartCoroutine(DashCoroutine());
+            GameManager.Instance.SoundManager.PlayEffect(SfxType.Player_Dash);
         }
 
         private IEnumerator DashCoroutine()

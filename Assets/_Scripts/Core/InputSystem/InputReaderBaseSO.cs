@@ -3,7 +3,7 @@ using GameModules.InputActions;
 
 using UnityEngine.InputSystem;
 
-namespace Runtime.InputSystem
+namespace Core.InputSystem
 {
     public abstract class InputReaderBaseSO : DescriptionSO
     {

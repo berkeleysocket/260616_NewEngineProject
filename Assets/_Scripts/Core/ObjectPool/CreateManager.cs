@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Core.ObjectPool
 {
-    public class CreateManager : MonoBehaviour
+    public class CreateManager : MonoBehaviour, IInitializable
     {
         [SerializeField] private GameEventChannelSO createChannel;
         [SerializeField] private PoolManagerSO poolManagerAsset;
