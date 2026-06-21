@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db890ea2e50f47345a5e03ad3a5c3637, type: 3}
   m_Name: Sfx_PlayerDash
   m_EditorClassIdentifier: Assembly-CSharp::Core.Sounds.SfxSO
-  <Type>k__BackingField: 0
-  <Clip>k__BackingField: {fileID: 0}
+  <Type>k__BackingField: 2
+  <Clip>k__BackingField: {fileID: 8300000, guid: 566cd7443ace12640bb737a1659569de, type: 3}
