@@ -11,6 +11,7 @@ namespace Core.Utilities.EventChannelSystem
     {
         public Vector2 direction;
     }
+
     public class DashKeyInputEvent : GameEvent { }
     public class DashAttackKeyInputEvent : GameEvent { }
 

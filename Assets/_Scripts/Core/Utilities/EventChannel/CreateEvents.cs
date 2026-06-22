@@ -1,8 +1,8 @@
-using Core.Utilities.EventChannelSystem;
+using Core.ObjectPool;
 
 using UnityEngine;
 
-namespace Core.ObjectPool
+namespace Core.Utilities.EventChannelSystem
 {
     public class CreateEvents 
     {

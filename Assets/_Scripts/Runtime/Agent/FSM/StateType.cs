@@ -6,5 +6,7 @@ namespace Runtime.Agents.FSM
         RUN,
         DASH,
         DASHATTACK,
+        PATROL,
+        ATTACK
     }
 }

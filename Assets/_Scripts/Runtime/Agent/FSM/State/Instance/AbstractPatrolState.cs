@@ -2,9 +2,9 @@ using Runtime.Agents.ModuleSystem.Interface;
 
 namespace Runtime.Agents.FSM
 {
-    public class AgentDashState : AbstractAgentState
+    public class AbstractPatrolState : AbstractAgentState
     {
-        public AgentDashState(Agent agent, IRenderer renderer, int stateAnimationHash, StateConditionSO[] conditions)
+        public AbstractPatrolState(Agent agent, IRenderer renderer, int stateAnimationHash, StateConditionSO[] conditions)
             : base(agent, renderer, stateAnimationHash, conditions)
         {
         }
