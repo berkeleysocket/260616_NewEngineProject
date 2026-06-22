@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Runtime.Agents.ModuleSystem
 {
-    public class MovementModule : AbstractModule, IMovement
+    public class MovementModule : AbstractModule, IPlayerMovementModule
     {
         [SerializeField] CharacterController controller;
         [SerializeField] private MovementModuleDataSO movementData;

@@ -9,7 +9,7 @@ namespace Runtime.Agents.FSM
     [CreateAssetMenu(fileName = "IsMovingCondition", menuName = "SO/StateConditionSO/IsMovingCondition", order = 0)]
     public class IsMovingConditionSO : StateConditionSO
     {
-        private IMovement _movement;
+        private IPlayerMovementModule _movement;
 
         public override void Initialize(Agent agent)
         {

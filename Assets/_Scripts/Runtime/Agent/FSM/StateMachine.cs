@@ -48,7 +48,6 @@ namespace Runtime.Agents.FSM
         public void Update()
         {
             _currentState?.Update();
-            DebugLogger.Log($"current state : {_currentState?.ToString()}", UnityEngine.Color.red);
         }
     }
 }
