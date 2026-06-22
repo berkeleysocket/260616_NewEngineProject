@@ -1,5 +1,5 @@
 using Core.Utilities.EventChannelSystem;
-using Runtime.Player;
+
 using UnityEngine;
 
 namespace Runtime.Agents.FSM

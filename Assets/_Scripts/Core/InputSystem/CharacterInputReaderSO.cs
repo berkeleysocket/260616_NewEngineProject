@@ -1,7 +1,6 @@
 using Core.Utilities;
 using Core.Utilities.EventChannelSystem;
 using GameModules.InputActions;
-using Runtime.Player;
 
 using UnityEngine;
 using UnityEngine.InputSystem;

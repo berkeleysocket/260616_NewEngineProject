@@ -1,8 +1,6 @@
-using Core.Utilities.EventChannelSystem;
-
 using UnityEngine;
 
-namespace Runtime.Player
+namespace Core.Utilities.EventChannelSystem
 {
     public class PlayerEvents 
     { 
