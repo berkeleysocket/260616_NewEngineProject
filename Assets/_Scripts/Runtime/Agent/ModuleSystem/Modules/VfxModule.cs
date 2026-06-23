@@ -9,10 +9,6 @@ namespace Runtime.Agents.ModuleSystem
 {
     public class VfxModule : AbstractModule
     {
-        //테스트 코드
-        public GameObject dashEffectPrefab;
-        public GameObject dashAttackEffectPrefab;
-
         private Dictionary<int, IPlayableVFX> _playableDict;
 
         protected override void OnInitialize()
@@ -43,11 +39,6 @@ namespace Runtime.Agents.ModuleSystem
             {
                 DebugLogger.LogWarning($"VFX with hash : {hash} not found");
             }
-        }
-
-        public void InstantiateAndPlayVfx()
-        {
-
         }
 
         public void StopVfx(int hash)

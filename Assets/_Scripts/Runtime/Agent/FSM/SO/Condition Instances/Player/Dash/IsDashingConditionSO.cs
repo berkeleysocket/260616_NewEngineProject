@@ -8,7 +8,7 @@ namespace Runtime.Agents.FSM
     public class IsDashingConditionSO : StateConditionSO
     {
         [Header("Subscribe Channels")]
-        [SerializeField] private GameEventChannelSO playerDoActionChannel;
+        [SerializeField] private EventChannelSO playerDoActionChannel;
         private bool isDashing = false;
 
         public override void Initialize(Agent agent)

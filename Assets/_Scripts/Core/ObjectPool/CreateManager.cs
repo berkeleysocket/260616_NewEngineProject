@@ -1,5 +1,6 @@
 using Core.Effects;
 using Core.Utilities.EventChannelSystem;
+using Runtime.Agents.ModuleSystem;
 
 using UnityEngine;
 
@@ -7,12 +8,13 @@ namespace Core.ObjectPool
 {
     public class CreateManager : MonoBehaviour, IInitializable
     {
-        [SerializeField] private GameEventChannelSO createChannel;
+        [SerializeField] private EventChannelSO createChannel;
         [SerializeField] private PoolManagerSO poolManagerAsset;
 
         private void OnDestroy()
         {
             createChannel.RemoveListener<ShowPoolingVfxEvent>(HandleShowPoolingVfx);
+            createChannel.RemoveListener<ShowPoolingProjectileEvent>(HandleShowPoolingProjectile);
         }
 
         public void Initialize()
@@ -24,14 +26,21 @@ namespace Core.ObjectPool
         private void HandleShowPoolingVfx(ShowPoolingVfxEvent evt)
         {
             PoolableVfx vfx = poolManagerAsset.Pop<PoolableVfx>(evt.ItemData);
-            vfx.OnVfxEnd += HandleVfxEnd;
+            vfx.Deactivated += HandleOnDeactivated;
             vfx.PlayVfx(evt.Position, evt.Rotation);
         }
 
-        private void HandleVfxEnd(PoolableVfx targetVfx)
+        private void HandleShowPoolingProjectile(ShowPoolingProjectileEvent evt)
         {
-            targetVfx.OnVfxEnd -= HandleVfxEnd;
-            poolManagerAsset.Push(targetVfx);
+            PoolableProjectile projectile = poolManagerAsset.Pop<PoolableProjectile>(evt.ItemData);
+            projectile.Deactivated += HandleOnDeactivated;
+            projectile.Shoot(evt.Position, evt.Rotation);
+        }
+
+        private void HandleOnDeactivated<T>(AbstractMonoPoolable<T> poolableObj) where T : AbstractMonoPoolable<T>
+        {
+            poolableObj.Deactivated -= HandleOnDeactivated;
+            poolManagerAsset.Push(poolableObj);
         }
     }
 }

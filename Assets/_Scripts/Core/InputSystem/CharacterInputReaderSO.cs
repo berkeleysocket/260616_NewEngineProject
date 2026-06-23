@@ -11,7 +11,7 @@ namespace Core.InputSystem
     public class CharacterInputReaderSO : InputReaderBaseSO, CharacterInputActions.IPlayerActions
     {
         [Header("Publish Channels")]
-        [SerializeField] private GameEventChannelSO pressKeyChannel;
+        [SerializeField] private EventChannelSO pressKeyChannel;
 
         private CharacterInputActions _inputActions;
         private MoveKeyInputEvent _playerMoveKeyInputEvent;

@@ -7,17 +7,17 @@ namespace Core.Utilities.EventChannelSystem
     
     }
 
-    public class MoveKeyInputEvent : GameEvent
+    public class MoveKeyInputEvent : ChannelEvent
     {
         public Vector2 direction;
     }
 
-    public class DashKeyInputEvent : GameEvent { }
-    public class DashAttackKeyInputEvent : GameEvent { }
+    public class DashKeyInputEvent : ChannelEvent { }
+    public class DashAttackKeyInputEvent : ChannelEvent { }
 
-    public class IsDashingEvent : GameEvent { }
-    public class CompletedDashEvent : GameEvent { }
+    public class IsDashingEvent : ChannelEvent { }
+    public class CompletedDashEvent : ChannelEvent { }
 
-    public class IsDashAttackingEvent : GameEvent { }
-    public class CompletedDashAttackEvent : GameEvent { }
+    public class IsDashAttackingEvent : ChannelEvent { }
+    public class CompletedDashAttackEvent : ChannelEvent { }
 }

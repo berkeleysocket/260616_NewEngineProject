@@ -1,10 +1,10 @@
-using UnityEngine;
-
 namespace Runtime.Agents
 {
-
+    public class Enemy : Agent
+    {
+        protected override void OnInitialize()
+        {
+        }
+    }
 }
-public class Enemy : MonoBehaviour
-{
 
-}

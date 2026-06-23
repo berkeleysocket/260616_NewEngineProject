@@ -15,13 +15,13 @@ namespace Runtime.Agents.ModuleSystem
         [SerializeField] private MovementModuleDataSO movementData;
 
         [Header("Subscribe Channels")]
-        [SerializeField] private GameEventChannelSO pressKeyChannel;
+        [SerializeField] private EventChannelSO pressKeyChannel;
 
 
         [Header("Publish Channels")]
-        [SerializeField] private GameEventChannelSO playerCompletedActionChannel;
-        [SerializeField] private GameEventChannelSO playerDoActionChannel;
-        [SerializeField] private GameEventChannelSO createChannel;
+        [SerializeField] private EventChannelSO playerCompletedActionChannel;
+        [SerializeField] private EventChannelSO playerDoActionChannel;
+        [SerializeField] private EventChannelSO createChannel;
 
         [Header("Vfx List")]
         [SerializeField] private AssetNameSO vfxFootstepAssetNameSO;

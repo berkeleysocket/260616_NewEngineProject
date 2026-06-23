@@ -6,12 +6,10 @@ using UnityEngine;
 
 namespace Core.Effects
 {
-    public class PoolableVfx : AbstractMonoPoolable
+    public class PoolableVfx : AbstractMonoPoolable<PoolableVfx>
     {
         [SerializeField] private GameObject effectObject;
         private IPlayableVFX _playableVfx;
-
-        public event Action<PoolableVfx> OnVfxEnd;
 
         private void Awake()
         {
@@ -42,7 +40,7 @@ namespace Core.Effects
         {
             _playableVfx.PlayVFX();
             yield return new WaitForSeconds(_playableVfx.VfxDuration);
-            OnVfxEnd?.Invoke(this);
+            OnDeactivated();
         }
 
         public void PlayVfx() => StartCoroutine(PlayVfxCoroutine());

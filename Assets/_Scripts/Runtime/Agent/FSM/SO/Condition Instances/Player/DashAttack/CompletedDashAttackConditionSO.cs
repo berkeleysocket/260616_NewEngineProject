@@ -8,7 +8,7 @@ namespace Runtime.Agents.FSM
     public class CompletedDashAttackConditionSO : StateConditionSO
     {
         [Header("Subscribe Channels")]
-        [SerializeField] private GameEventChannelSO playerCompletedActionChannel;
+        [SerializeField] private EventChannelSO playerCompletedActionChannel;
         private bool isCompleted = false;
 
         public override void Initialize(Agent agent)

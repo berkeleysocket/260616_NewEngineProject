@@ -8,7 +8,7 @@ namespace Runtime.Agents.FSM
     public class IsDashAttackingConditionSO : StateConditionSO
     {
         [Header("Subscribe Channels")]
-        [SerializeField] private GameEventChannelSO playerDoActionChannel;
+        [SerializeField] private EventChannelSO playerDoActionChannel;
         private bool isDashAttacking = false;
 
         public override void Initialize(Agent agent)
