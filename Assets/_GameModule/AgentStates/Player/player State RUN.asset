@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42d4ac486fafc45499d0592aa09cbbe2, type: 3}
-  m_Name: state DASH
+  m_Name: player State RUN
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.FSM.AgentStateSO
   m_Description: 
-  <StateName>k__BackingField: DASH
-  <ClassName>k__BackingField: Runtime.Agents.FSM.AgentDashState
-  <AnimationParamSO>k__BackingField: {fileID: 11400000, guid: 9fe050e2a5457f047bc2340ca9daef5c, type: 2}
-  <StateIndex>k__BackingField: 2
+  <StateName>k__BackingField: RUN
+  <ClassName>k__BackingField: Runtime.Agents.FSM.AgentRunState
+  <AnimationParamSO>k__BackingField: {fileID: 11400000, guid: de7fdce4d3035bc4680a4a49032539f4, type: 2}
+  <StateIndex>k__BackingField: 1
   <Conditions>k__BackingField:
-  - {fileID: 11400000, guid: 1700bfa1fffa5d44bbd5ea2f7b396b40, type: 2}
+  - {fileID: 11400000, guid: d65b509055a0c104ab120418b75dc8b6, type: 2}
   - {fileID: 11400000, guid: 4e0466ce01d5ade4999381ccf6cba7e9, type: 2}

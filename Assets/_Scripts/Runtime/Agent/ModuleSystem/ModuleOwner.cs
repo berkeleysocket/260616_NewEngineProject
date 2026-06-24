@@ -16,6 +16,7 @@ namespace Runtime.Agents.ModuleSystem
         }
         private void Initialize()
         {
+            DebugLogger.Log("asdasd");
             _modules = new Dictionary<Type, AbstractModule>();
             _modules = GetComponentsInChildren<AbstractModule>()
                 .ToDictionary(

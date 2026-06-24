@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42d4ac486fafc45499d0592aa09cbbe2, type: 3}
-  m_Name: state RUN
+  m_Name: patrolEnemy State ATTACK
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.FSM.AgentStateSO
   m_Description: 
-  <StateName>k__BackingField: RUN
-  <ClassName>k__BackingField: Runtime.Agents.FSM.AgentRunState
-  <AnimationParamSO>k__BackingField: {fileID: 11400000, guid: de7fdce4d3035bc4680a4a49032539f4, type: 2}
-  <StateIndex>k__BackingField: 1
+  <StateName>k__BackingField: ATTACK
+  <ClassName>k__BackingField: Runtime.Agents.FSM.AgentAttackState
+  <AnimationParamSO>k__BackingField: {fileID: 11400000, guid: 7bc429d0240a3ce4d8aca7e6bec3ebec, type: 2}
+  <StateIndex>k__BackingField: 5
   <Conditions>k__BackingField:
-  - {fileID: 11400000, guid: d65b509055a0c104ab120418b75dc8b6, type: 2}
-  - {fileID: 11400000, guid: 4e0466ce01d5ade4999381ccf6cba7e9, type: 2}
+  - {fileID: 11400000, guid: a390bad99590b3a4fba0ff7c6239d6c8, type: 2}

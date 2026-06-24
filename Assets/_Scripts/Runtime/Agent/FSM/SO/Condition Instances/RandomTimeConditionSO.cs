@@ -1,3 +1,4 @@
+using Core.Utilities;
 using UnityEngine;
 
 namespace Runtime.Agents.FSM
@@ -5,10 +6,8 @@ namespace Runtime.Agents.FSM
     [CreateAssetMenu(fileName = "RandomTimeConditionSO", menuName = "SO/StateConditionSO/RandomTimeCondition")]
     public class RandomTimeConditionSO : StateConditionSO
     {
-        [SerializeField] private float minTrueDuration = 1f;
-        [SerializeField] private float maxTrueDuration = 3f;
-        [SerializeField] private float minFalseDuration = 2f;
-        [SerializeField] private float maxFalseDuration = 5f;
+        [SerializeField] private float minDuration = 1f;
+        [SerializeField] private float maxDuration = 3f;
 
         private bool _currentState;
         private float _nextTargetTime;
@@ -17,12 +16,14 @@ namespace Runtime.Agents.FSM
         public override void Initialize(Agent agent)
         {
             _currentState = false;
+            _nextTargetTime = 0f;
             _timer = 0f;
             SetRandomTargetTime();
         }
 
         public override bool CheckCondition()
         {
+            DebugLogger.Log("CheckCondition");
             if (_currentState) _currentState = false;
             _timer += Time.deltaTime;
 
@@ -37,12 +38,6 @@ namespace Runtime.Agents.FSM
             return _currentState;
         }
 
-        private void SetRandomTargetTime()
-        {
-            if (_currentState)
-                _nextTargetTime = Random.Range(minTrueDuration, maxTrueDuration);
-            else
-                _nextTargetTime = Random.Range(minFalseDuration, maxFalseDuration);
-        }
+        private void SetRandomTargetTime() => _nextTargetTime = Random.Range(minDuration, maxDuration);
     }
 }

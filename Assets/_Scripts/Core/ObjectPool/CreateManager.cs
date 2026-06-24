@@ -14,7 +14,7 @@ namespace Core.ObjectPool
         private void OnDestroy()
         {
             createChannel.RemoveListener<ShowPoolingVfxEvent>(HandleShowPoolingVfx);
-            createChannel.RemoveListener<ShowPoolingProjectileEvent>(HandleShowPoolingProjectile);
+            createChannel.RemoveListener<ShootPoolingProjectileEvent>(HandleShowPoolingProjectile);
         }
 
         public void Initialize()
@@ -30,7 +30,7 @@ namespace Core.ObjectPool
             vfx.PlayVfx(evt.Position, evt.Rotation);
         }
 
-        private void HandleShowPoolingProjectile(ShowPoolingProjectileEvent evt)
+        private void HandleShowPoolingProjectile(ShootPoolingProjectileEvent evt)
         {
             PoolableProjectile projectile = poolManagerAsset.Pop<PoolableProjectile>(evt.ItemData);
             projectile.Deactivated += HandleOnDeactivated;

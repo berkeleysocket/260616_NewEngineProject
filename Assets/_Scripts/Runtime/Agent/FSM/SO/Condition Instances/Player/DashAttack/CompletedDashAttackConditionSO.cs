@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Runtime.Agents.FSM
 {
-    [CreateAssetMenu(fileName = "CompletedDashAttackCondition", menuName = "SO/StateConditionSO/CompletedDashAttackConditionSO", order = 0)]
+    [CreateAssetMenu(fileName = "CompletedDashAttackConditionSO", menuName = "SO/StateConditionSO/CompletedDashAttackCondition", order = 0)]
     public class CompletedDashAttackConditionSO : StateConditionSO
     {
         [Header("Subscribe Channels")]

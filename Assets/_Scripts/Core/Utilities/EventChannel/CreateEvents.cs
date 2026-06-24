@@ -7,7 +7,7 @@ namespace Core.Utilities.EventChannelSystem
     public class CreateEvents 
     {
         public static readonly ShowPoolingVfxEvent ShowPoolingVfxEvent = new ShowPoolingVfxEvent();
-        public static readonly ShowPoolingProjectileEvent ShowPoolingProjectile = new ShowPoolingProjectileEvent();
+        public static readonly ShootPoolingProjectileEvent ShootPoolingProjectile = new ShootPoolingProjectileEvent();
     }
 
     public class ShowPoolingVfxEvent : ChannelEvent
@@ -24,7 +24,7 @@ namespace Core.Utilities.EventChannelSystem
         }
     }
 
-    public class ShowPoolingProjectileEvent : ChannelEvent
+    public class ShootPoolingProjectileEvent : ChannelEvent
     {
         public PoolItemSO ItemData { get; private set; }
         public Vector3 Position { get; private set; }

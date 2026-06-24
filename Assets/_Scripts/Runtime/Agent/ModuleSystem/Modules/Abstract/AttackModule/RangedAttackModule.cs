@@ -11,10 +11,10 @@ namespace Runtime.Agents.ModuleSystem
         [SerializeField] private EventChannelSO createChannel;
         [SerializeField] private Transform firePos;
 
-        public override void Attack()
+        public override void OnAttack()
         {
-            CreateEvents.ShowPoolingProjectile.Initialize(projectileSO, firePos.position, firePos.rotation);
-            createChannel.RaiseEvent(CreateEvents.ShowPoolingProjectile);
+            CreateEvents.ShootPoolingProjectile.Initialize(projectileSO, firePos.position, Quaternion.LookRotation(firePos.forward));
+            createChannel.RaiseEvent(CreateEvents.ShootPoolingProjectile);
         }
     }
 }
