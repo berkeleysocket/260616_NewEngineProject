@@ -10489,8 +10489,6 @@ MonoBehaviour:
   controller: {fileID: 1319070070}
   movementData: {fileID: 11400000, guid: 50d894390ba155e418a1dab6a634af3d, type: 2}
   pressKeyChannel: {fileID: 11400000, guid: 6813d1d9d57669d4388e851a9f2f1a4f, type: 2}
-  playerCompletedActionChannel: {fileID: 11400000, guid: c8c0d371200c6ef4b914cd553f4b34aa, type: 2}
-  playerDoActionChannel: {fileID: 11400000, guid: ee700a2de5603a9428321509594154d8, type: 2}
   createChannel: {fileID: 11400000, guid: 15ff9e0a8a075af4b9c90ebfc4c3e100, type: 2}
   vfxFootstepAssetNameSO: {fileID: 11400000, guid: fa30faac76e346242ba40a7e9de6a030, type: 2}
   vfxDashSO: {fileID: 11400000, guid: 24bcb35a3d06c0e46858931ab66f09c2, type: 2}
@@ -14130,8 +14128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1c950656d14e64aa74c851adcccf26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  startState: 4
-  stateSOList: {fileID: 11400000, guid: 7548530882b95b842ba489f7cdf50d49, type: 2}
+  startMachineData: {fileID: 0}
 --- !u!1001 &1095463450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17293,6 +17290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1319070069}
+  - component: {fileID: 1319070071}
   - component: {fileID: 1319070070}
   m_Layer: 0
   m_Name: Player
@@ -17310,7 +17308,7 @@ Transform:
   m_GameObject: {fileID: 1319070068}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.012, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17344,6 +17342,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!114 &1319070071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319070068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d32caf11179ca641b656aa8a23a3b11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Scripts.Runtime.Agents.Player.Player
+  startMachineData: {fileID: 11400000, guid: 5b465d8db620abe42bbe5257461b0e9b, type: 2}
 --- !u!1001 &1327419784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23997,8 +24008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1c950656d14e64aa74c851adcccf26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.Enemy
-  startState: 0
-  stateSOList: {fileID: 0}
+  startMachineData: {fileID: 0}
 --- !u!1001 &1894661164
 PrefabInstance:
   m_ObjectHideFlags: 0

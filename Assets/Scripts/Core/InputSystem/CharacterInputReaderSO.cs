@@ -18,6 +18,7 @@ namespace Scripts.Core.InputSystem
         private MoveKeyInputEvent _playerMoveKeyInputEvent;
         private DashKeyInputEvent _playerDashKeyInputEvent;
         private DashAttackKeyInputEvent _playerDashAttackKeyInputEvent;
+        private ActiveSkillKeyInputEvent _playerActiveSkillKeyInputEvent;
 
         public override void Initialize(CharacterInputActions inputActions)
         {
@@ -25,6 +26,7 @@ namespace Scripts.Core.InputSystem
             this._playerMoveKeyInputEvent = new MoveKeyInputEvent();
             this._playerDashKeyInputEvent = new DashKeyInputEvent();
             this._playerDashAttackKeyInputEvent = new DashAttackKeyInputEvent();
+            this._playerActiveSkillKeyInputEvent = new ActiveSkillKeyInputEvent();
 
             DebugLogger.Assert(pressKeyChannel != null, "PressKeyChannel is null");
         }
@@ -49,12 +51,6 @@ namespace Scripts.Core.InputSystem
 
         public override InputActionMap GetInputActionMap() => _inputActions?.Player;
         
-        public void OnDashRoll(InputAction.CallbackContext context)
-        {
-            if (context.started)
-                pressKeyChannel.RaiseEvent(_playerDashKeyInputEvent);
-        }
-
         public void OnDashAttack(InputAction.CallbackContext context)
         {
             if (context.started)
@@ -70,6 +66,18 @@ namespace Scripts.Core.InputSystem
                 _playerMoveKeyInputEvent.direction = direction;
                 pressKeyChannel.RaiseEvent(_playerMoveKeyInputEvent);
             }
+        }
+
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            if (context.started)
+                pressKeyChannel.RaiseEvent(_playerDashKeyInputEvent);
+        }
+
+        public void OnActiveSkill(InputAction.CallbackContext context)
+        {
+            if (context.started)
+                pressKeyChannel.RaiseEvent(_playerActiveSkillKeyInputEvent);
         }
     }
 }

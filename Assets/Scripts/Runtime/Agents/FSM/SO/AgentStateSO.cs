@@ -10,7 +10,7 @@ namespace Scripts.Runtime.Agents.FSM.SO
         [field: SerializeField] public string StateName { get; private set; }
         [field: SerializeField] public string ClassName { get; private set; }
         [field: SerializeField] public AssetNameSO AnimationParamSO { get; private set; }
-        [field: SerializeField] public StateType StateIndex { get; private set; }
+        [field: SerializeField] public StateType StateType { get; private set; }
         [field: SerializeField] public StatePath[] Paths { get; private set; }
 
         public int StateNameHash { get; private set; }

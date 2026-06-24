@@ -10,7 +10,7 @@ namespace Scripts.Core.EventChannels
         public static readonly ShootPoolingProjectileEvent ShootPoolingProjectile = new ShootPoolingProjectileEvent();
     }
 
-    public class ShowPoolingVfxEvent : ChannelEvent
+    public class ShowPoolingVfxEvent : GameEvent
     {
         public PoolItemSO ItemData { get; private set; }
         public Vector3 Position { get; private set; }
@@ -24,7 +24,7 @@ namespace Scripts.Core.EventChannels
         }
     }
 
-    public class ShootPoolingProjectileEvent : ChannelEvent
+    public class ShootPoolingProjectileEvent : GameEvent
     {
         public PoolItemSO ItemData { get; private set; }
         public Vector3 Position { get; private set; }

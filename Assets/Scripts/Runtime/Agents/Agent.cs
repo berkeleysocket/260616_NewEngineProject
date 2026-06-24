@@ -8,15 +8,14 @@ namespace Scripts.Runtime.Agents
 {
     public abstract class Agent : ModuleOwner 
     {
-        [SerializeField] protected StateType startState; 
-        [SerializeField] protected AgentStateListSO stateSOList;
+        [SerializeField] private AgentStateMachineDataSO startMachineData;
 
         public StateMachine StateMachine { get; protected set; } = new StateMachine();
 
         protected override void OnInitialize()
         {
-            this.StateMachine.Initialize(this, stateSOList.Values);
-            this.StateMachine.ChangeState((byte)startState);
+            this.StateMachine.Initialize(this, startMachineData.Values);
+            this.StateMachine.ChangeState(startMachineData.StartState);
         }
 
         private void Update()

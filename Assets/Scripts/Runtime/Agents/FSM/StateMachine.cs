@@ -10,12 +10,12 @@ namespace Scripts.Runtime.Agents.FSM
 {
     public class StateMachine
     {
-        private Dictionary<byte, AbstractAgentState> _states;
+        private Dictionary<StateType, AbstractAgentState> _states;
         private AbstractAgentState _currentState;
 
         public void Initialize(Agent agent, AgentStateSO[] stateList)
         {
-            this._states = new Dictionary<byte, AbstractAgentState>();
+            this._states = new Dictionary<StateType, AbstractAgentState>();
 
             foreach (AgentStateSO stateSO in stateList)
             {
@@ -31,13 +31,13 @@ namespace Scripts.Runtime.Agents.FSM
                 AbstractAgentState stateInstance = (AbstractAgentState)Activator.CreateInstance(stateType, agent, renderer, animationHash, conditions);
                 stateInstance.Initialize();
 
-                _states.Add((byte)stateSO.StateIndex, stateInstance);
+                _states.Add(stateSO.StateType, stateInstance);
             }
         }
 
-        public void ChangeState(byte stateIndex, float transitionDuration = 0.1f)
+        public void ChangeState(StateType stateType, float transitionDuration = 0.1f)
         {
-            _states.TryGetValue(stateIndex, out AbstractAgentState state);
+            _states.TryGetValue(stateType, out AbstractAgentState state);
 
             DebugLogger.Assert(state != null, "State is null");
 

@@ -38,7 +38,7 @@ namespace Scripts.Runtime.Agents.FSM.States
             {
                 if (path.Condition.CheckCondition())
                 {
-                    agent.StateMachine.ChangeState((byte)path.DestinationState);
+                    agent.StateMachine.ChangeState(path.DestinationState);
                 }
             }
             OnUpdate();

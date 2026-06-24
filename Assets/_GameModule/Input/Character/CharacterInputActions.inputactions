@@ -16,7 +16,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "DashRoll",
+                    "name": "Dash",
                     "type": "Button",
                     "id": "e7cb055b-b503-417f-97ca-659272d6944d",
                     "expectedControlType": "",
@@ -28,6 +28,15 @@
                     "name": "DashAttack",
                     "type": "Button",
                     "id": "4e015584-0e87-4ecc-8482-892c7f39209c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActiveSkill",
+                    "type": "Button",
+                    "id": "0714d310-4428-4fdf-802a-59f868df2769",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -108,7 +117,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DashRoll",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -120,6 +129,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DashAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eaab1c46-4746-478d-a3db-1a080c810884",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActiveSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

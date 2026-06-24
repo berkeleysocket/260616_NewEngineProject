@@ -7,14 +7,14 @@ namespace Scripts.Core.EventChannels.SO
     [CreateAssetMenu(fileName = "GameEventChannel", menuName = "SO/Utilities/EventChannelSO")]
     public class EventChannelSO : ScriptableObject
     {
-        private Dictionary<Type, Action<ChannelEvent>> _events = new();
-        private Dictionary<Delegate, Action<ChannelEvent>> _lookUp = new();
+        private Dictionary<Type, Action<GameEvent>> _events = new();
+        private Dictionary<Delegate, Action<GameEvent>> _lookUp = new();
 
-        public void AddListener<T>(Action<T> handler) where T : ChannelEvent
+        public void AddListener<T>(Action<T> handler) where T : GameEvent
         {
             if (_lookUp.ContainsKey(handler)) return;
 
-            Action<ChannelEvent> castHandler = (evt) => handler(evt as T);
+            Action<GameEvent> castHandler = (evt) => handler(evt as T);
             _lookUp[handler] = castHandler;
             Type eventType = typeof(T);
             if (_events.ContainsKey(eventType))
@@ -27,12 +27,12 @@ namespace Scripts.Core.EventChannels.SO
             }
         }
 
-        public void RemoveListener<T>(Action<T> handler) where T : ChannelEvent
+        public void RemoveListener<T>(Action<T> handler) where T : GameEvent
         {
             Type evtType = typeof(T);
-            if (_lookUp.TryGetValue(handler, out Action<ChannelEvent> castHandler))
+            if (_lookUp.TryGetValue(handler, out Action<GameEvent> castHandler))
             {
-                if (_events.TryGetValue(evtType, out Action<ChannelEvent> internalHandler))
+                if (_events.TryGetValue(evtType, out Action<GameEvent> internalHandler))
                 {
                     internalHandler -= castHandler;
                     if (internalHandler == null)
@@ -44,9 +44,9 @@ namespace Scripts.Core.EventChannels.SO
             }
         }
 
-        public void RaiseEvent(ChannelEvent evt)
+        public void RaiseEvent(GameEvent evt)
         {
-            if (_events.TryGetValue(evt.GetType(), out Action<ChannelEvent> castHandler))
+            if (_events.TryGetValue(evt.GetType(), out Action<GameEvent> castHandler))
             {
                 castHandler?.Invoke(evt);
             }

@@ -1,11 +1,11 @@
-using Scripts.Core.Utilities.SO;
 using GameModules.InputActions;
 
 using UnityEngine.InputSystem;
+using UnityEngine;
 
 namespace Scripts.Core.InputSystem
 {
-    public abstract class InputReaderBaseSO : DescriptionSO
+    public abstract class InputReaderBaseSO : ScriptableObject
     {
         public abstract void Initialize(CharacterInputActions inputActions);
         public abstract void Enable();
