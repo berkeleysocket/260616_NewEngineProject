@@ -113,7 +113,7 @@ namespace GameModules.InputActions
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""DashAttack"",
+                    ""name"": ""DashAttackSkill"",
                     ""type"": ""Button"",
                     ""id"": ""4e015584-0e87-4ecc-8482-892c7f39209c"",
                     ""expectedControlType"": """",
@@ -207,7 +207,7 @@ namespace GameModules.InputActions
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""DashAttack"",
+                    ""action"": ""DashAttackSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -220,7 +220,7 @@ namespace GameModules.InputActions
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_DashRoll = m_Player.FindAction("DashRoll", throwIfNotFound: true);
-            m_Player_DashAttack = m_Player.FindAction("DashAttack", throwIfNotFound: true);
+            m_Player_DashAttack = m_Player.FindAction("DashAttackSkill", throwIfNotFound: true);
         }
 
         ~@CharacterInputActions()

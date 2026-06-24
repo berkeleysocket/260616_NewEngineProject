@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.FSM.AgentStateListSO
   <Values>k__BackingField:
   - {fileID: 11400000, guid: f06d15bfa5dfa6148b7bdd59eac5ce9e, type: 2}
-  - {fileID: 11400000, guid: 666baea453700e043908b33c90478e28, type: 2}
+  - {fileID: 11400000, guid: f06d15bfa5dfa6148b7bdd59eac5ce9e, type: 2}

@@ -1,0 +1,47 @@
+using Scripts.Core.ObjectPool;
+
+using System.Collections;
+using UnityEngine;
+
+namespace Scripts.Core.Effects
+{
+    public class PoolableVfx : AbstractMonoPoolable<PoolableVfx>
+    {
+        [SerializeField] private GameObject effectObject;
+        private IPlayableVfx _playableVfx;
+
+        private void Awake()
+        {
+            _playableVfx = effectObject.GetComponent<IPlayableVfx>();
+        }
+
+        private void OnValidate()
+        {
+            if (effectObject == null) return;
+            _playableVfx = effectObject.GetComponent<IPlayableVfx>();
+
+            if (_playableVfx == null)
+                effectObject = null;
+        }
+
+        public override void ResetItem()
+        {
+            _playableVfx.StopVFX();
+        }
+
+        public void PlayVfx(Vector3 position, Quaternion rotation)
+        {
+            transform.SetPositionAndRotation(position, rotation);
+            StartCoroutine(PlayVfxCoroutine());
+        }
+
+        private IEnumerator PlayVfxCoroutine()
+        {
+            _playableVfx.PlayVFX();
+            yield return new WaitForSeconds(_playableVfx.VfxDuration);
+            OnDeactivated();
+        }
+
+        public void PlayVfx() => StartCoroutine(PlayVfxCoroutine());
+    }
+}
