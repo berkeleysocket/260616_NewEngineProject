@@ -36,6 +36,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
 
         public override void Cast()
         {
+            _movementModule.CanMove = false;
             _dashAttackCoroutine = StartCoroutine(DashAttackCoroutine());
         }
 
@@ -51,6 +52,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
             {
                 StopCoroutine(_dashAttackCoroutine);
                 _dashAttackCoroutine = null;
+                _movementModule.CanMove = true;
             }
         }
 

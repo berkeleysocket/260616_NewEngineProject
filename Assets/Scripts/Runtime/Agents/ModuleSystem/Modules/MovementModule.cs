@@ -6,8 +6,6 @@ using Scripts.Core.Utilities.SO;
 using Scripts.Runtime.Agents.ModuleSystem.Modules.Interface;
 using Scripts.Runtime.Agents.ModuleSystem.Modules.SO;
 
-using System.Collections;
-using UnityEditor.U2D;
 using UnityEngine;
 
 namespace Scripts.Runtime.Agents.ModuleSystem.Modules
@@ -30,6 +28,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules
         private float _moveSpeed = 0f;
 
         public bool IsMoving { get; private set; }
+        public bool CanMove { get; set; }
 
         private void FixedUpdate()
         {
@@ -60,7 +59,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules
         {
             LastMoveDirection = direction;
 
-            if (IsDashing) return;
+            if (!CanMove) return;
 
             _velocity = new Vector3(direction.x, 0, direction.y) * _moveSpeed;
             _vfxModule?.PlayVfx(vfxFootstepAssetNameSO.AssetNameHash);
