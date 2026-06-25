@@ -5,7 +5,7 @@ using System;
 namespace Scripts.Runtime.Agents.FSM
 {
     [Serializable]
-    public struct StatePath
+    public class StatePath
     {
         public StateType DestinationState;
         public StateConditionSO Condition;

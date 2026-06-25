@@ -38,7 +38,10 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
         public void SkillCast(SkillType skillType)
         {
             if (skills.TryGetValue(skillType, out var skill))
-                skill.Cast();
+            {
+                if(skill.CanCast())
+                    skill.Cast();
+            }
         }
 
         private void HandleActiveSkill01KeyInputEvent(ActiveSkillKeyInputEvent args)

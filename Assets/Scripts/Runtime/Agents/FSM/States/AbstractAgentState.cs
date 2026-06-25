@@ -20,9 +20,7 @@ namespace Scripts.Runtime.Agents.FSM.States
         public void Initialize()
         {
             foreach (StatePath path in _paths)
-            {
                 path.Condition.Initialize(agent);
-            }
         }
 
         public virtual void Enter(float transitionDuration)
@@ -35,12 +33,9 @@ namespace Scripts.Runtime.Agents.FSM.States
         public void Update()
         {
             foreach(StatePath path in _paths)
-            {
                 if (path.Condition.CheckCondition())
-                {
                     agent.StateMachine.ChangeState(path.DestinationState);
-                }
-            }
+
             OnUpdate();
         }
         protected abstract void OnUpdate();
@@ -52,4 +47,3 @@ namespace Scripts.Runtime.Agents.FSM.States
         protected abstract void OnExit();
     }
 }
-

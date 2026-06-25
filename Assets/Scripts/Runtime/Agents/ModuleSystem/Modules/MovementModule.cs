@@ -6,7 +6,6 @@ using Scripts.Runtime.Agents.ModuleSystem.Modules.Interface;
 using Scripts.Runtime.Agents.ModuleSystem.Modules.SO;
 
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 namespace Scripts.Runtime.Agents.ModuleSystem.Modules
 {
@@ -19,7 +18,6 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules
 
         public bool CanMove { get; set; }
         public Vector2 LastMoveDirection { get; private set; }
-        public bool IsMoving { get; private set; }
 
         private IVfxModule _vfxModule;
         private ITriggerModule _triggerModule;
@@ -61,8 +59,6 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules
             _triggerModule?.OnMoved();
             _vfxModule?.PlayVfx(vfxFootstepAssetNameSO.AssetNameHash);
             RotateTo(_velocity);
-
-            IsMoving = direction.x != 0f || direction.y != 0f;
         }
 
         public void RotateTo(Vector3 direction)
@@ -72,7 +68,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules
             owner.transform.forward = direction.normalized;
         }
 
-        public void SpeedUp(float speed) => _velocity *= speed;
+        public void SpeedUp(float speed) => _moveSpeed = speed;
 
         private void HandleMoveKeyInput(MoveKeyInputEvent args) => Move(args.Direction);
     }

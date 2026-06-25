@@ -36,7 +36,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
 
         public override void Cast()
         {
-            _dashCoroutine = StartCoroutine(DashAttackCoroutine());
+            _dashCoroutine = StartCoroutine(Dash());
         }
 
         public override bool CanCast()
@@ -51,21 +51,25 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
             {
                 StopCoroutine(_dashCoroutine);
                 _dashCoroutine = null;
+                _movementModule.CanMove = true;
             }
         }
 
-        private IEnumerator DashAttackCoroutine()
+        private IEnumerator Dash()
         {
             Vector3 dashDirection = new Vector3(_movementModule.LastMoveDirection.x, 0, _movementModule.LastMoveDirection.y);
             _movementModule.RotateTo(dashDirection);
             CreateEvents.ShowPoolingVfxEvent.Initialize(VfxDashSO, owner.transform.position, owner.transform.rotation);
             CreateChannel.RaiseEvent(CreateEvents.ShowPoolingVfxEvent);
-            _movementModule.SpeedUp(_speed);
             _movementModule.Move(dashDirection);
+            _movementModule.SpeedUp(_speed);
+            _movementModule.CanMove = false;
 
             yield return _dashTimer;
 
             _dashCoroutine = null;
+            _movementModule.CanMove = true;
+            _movementModule.Move(_movementModule.LastMoveDirection);
         }
     }
 }

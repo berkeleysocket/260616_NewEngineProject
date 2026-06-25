@@ -5,28 +5,20 @@ using GameModules.InputActions;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem;
 
 namespace Scripts.Core.InputSystem
 {
     [CreateAssetMenu(fileName = "CharacterInputReader", menuName = "SO/InputReader/CharacterInputReaderSO")]
     public class CharacterInputReaderSO : InputReaderBaseSO, CharacterInputActions.IPlayerActions
     {
-        [Header("Publish Channels")]
         [SerializeField] private EventChannelSO pressKeyChannel;
 
         private CharacterInputActions _inputActions;
-        private MoveKeyInputEvent _playerMoveKeyInputEvent;
-        private ActiveSkillKeyInputEvent _activeSkill01KeyInputEvent;
-        private ActiveSkillKeyInputEvent _activeSkill02KeyInputEvent;
-        private ActiveSkillKeyInputEvent _activeSkill03KeyInputEvent;
 
         public override void Initialize(CharacterInputActions inputActions)
         {
             this._inputActions = inputActions;
-            this._playerMoveKeyInputEvent = new MoveKeyInputEvent();
-            this._activeSkill01KeyInputEvent = new ActiveSkillKeyInputEvent();
-            this._activeSkill02KeyInputEvent = new ActiveSkillKeyInputEvent();
-            this._activeSkill03KeyInputEvent = new ActiveSkillKeyInputEvent();
 
             DebugLogger.Assert(pressKeyChannel != null, "PressKeyChannel is null");
         }
@@ -50,44 +42,42 @@ namespace Scripts.Core.InputSystem
         }
 
         public override InputActionMap GetInputActionMap() => _inputActions?.Player;
-        
-        public void OnDashAttack(InputAction.CallbackContext context)
-        {
-
-        }
 
         public void OnMove(InputAction.CallbackContext context)
         {
             if(context.performed)
             {
                 Vector2 direction = context.ReadValue<Vector2>();
-
-                _playerMoveKeyInputEvent.Direction = direction;
-                pressKeyChannel.RaiseEvent(_playerMoveKeyInputEvent);
+                PlayerEvents.MoveKeyInputEvent.Initialize(direction);
+                pressKeyChannel.RaiseEvent(PlayerEvents.MoveKeyInputEvent);
             }
-        }
-
-        public void OnActiveSkill(InputAction.CallbackContext context)
-        {
-            if (context.started)
-                pressKeyChannel.RaiseEvent(_activeSkill01KeyInputEvent);
         }
 
         public void OnActiveSkill01(InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            if (context.started)
+            {
+                PlayerEvents.ActiveSkillKeyInputEvent.Initialize(SkillType.ActiveSkill01);
+                pressKeyChannel.RaiseEvent(PlayerEvents.ActiveSkillKeyInputEvent);
+            }
         }
 
         public void OnActiveSkill02(InputAction.CallbackContext context)
         {
             if (context.started)
-                pressKeyChannel.RaiseEvent(_activeSkill02KeyInputEvent);
+            {
+                PlayerEvents.ActiveSkillKeyInputEvent.Initialize(SkillType.ActiveSkill02);
+                pressKeyChannel.RaiseEvent(PlayerEvents.ActiveSkillKeyInputEvent);
+            }
         }
 
         public void OnActiveSkill03(InputAction.CallbackContext context)
         {
             if (context.started)
-                pressKeyChannel.RaiseEvent(_activeSkill03KeyInputEvent);
+            {
+                PlayerEvents.ActiveSkillKeyInputEvent.Initialize(SkillType.ActiveSkill03);
+                pressKeyChannel.RaiseEvent(PlayerEvents.ActiveSkillKeyInputEvent);
+            }
         }
     }
 }
