@@ -8,7 +8,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
     {
         [SerializeField] protected SkillDataSO SkillData;
         
-        public SkillType SkillType { get; protected set; }
+        public SkillType Type { get; protected set; }
 
         protected ModuleOwner owner;
         protected bool IsCooldownReady => SkillData.Cooldown == 0 ? true : Time.time - _lastUsingTime >= SkillData.Cooldown;
@@ -19,7 +19,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
         public void Initialize(ModuleOwner owner)
         {
             this.owner = owner;
-            this.SkillType = SkillData.SkillType;
+            this.Type = SkillData.SkillType;
             this._cooldown = SkillData.Cooldown;
             OnInitialize();
         }

@@ -1,3 +1,4 @@
+using Runtime.Agents.ModuleSystem;
 using Scripts.Core.Utilities;
 
 using System;
@@ -9,7 +10,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem
 {
     public abstract class ModuleOwner : MonoBehaviour
     {
-        private Dictionary<Type, AbstractModule> _modules;
+        private Dictionary<Type, IModule> _modules;
 
         private void Awake()
         {
@@ -17,13 +18,13 @@ namespace Scripts.Runtime.Agents.ModuleSystem
         }
         private void Initialize()
         {
-            _modules = new Dictionary<Type, AbstractModule>();
-            _modules = GetComponentsInChildren<AbstractModule>()
+            _modules = new Dictionary<Type, IModule>();
+            _modules = GetComponentsInChildren<IModule>()
                 .ToDictionary(
                 (module)=> module.GetType(),
                 (module)=>module);
 
-            foreach(var module in _modules.Values)
+            foreach(IModule module in _modules.Values)
                 module.Initialize(this);
 
             OnInitialize();
@@ -31,12 +32,12 @@ namespace Scripts.Runtime.Agents.ModuleSystem
 
         protected abstract void OnInitialize();
 
-        public T GetModule<T>() where T : AbstractModule
+        public T GetModule<T>() where T : class, IModule
         {
-            if (_modules.TryGetValue(typeof(T), out AbstractModule iModule))
+            if (_modules.TryGetValue(typeof(T), out IModule iModule))
                 return (T)iModule;
 
-            AbstractModule module = _modules.Values.FirstOrDefault(moduleType => moduleType is T);
+            IModule module = _modules.Values.FirstOrDefault(moduleType => moduleType is T);
             if (module is T castModule)
                 return castModule;
 

@@ -16,17 +16,17 @@ namespace Scripts.Core.InputSystem
 
         private CharacterInputActions _inputActions;
         private MoveKeyInputEvent _playerMoveKeyInputEvent;
-        private DashKeyInputEvent _playerDashKeyInputEvent;
-        private DashAttackKeyInputEvent _playerDashAttackKeyInputEvent;
-        private ActiveSkillKeyInputEvent _playerActiveSkillKeyInputEvent;
+        private ActiveSkillKeyInputEvent _activeSkill01KeyInputEvent;
+        private ActiveSkillKeyInputEvent _activeSkill02KeyInputEvent;
+        private ActiveSkillKeyInputEvent _activeSkill03KeyInputEvent;
 
         public override void Initialize(CharacterInputActions inputActions)
         {
             this._inputActions = inputActions;
             this._playerMoveKeyInputEvent = new MoveKeyInputEvent();
-            this._playerDashKeyInputEvent = new DashKeyInputEvent();
-            this._playerDashAttackKeyInputEvent = new DashAttackKeyInputEvent();
-            this._playerActiveSkillKeyInputEvent = new ActiveSkillKeyInputEvent();
+            this._activeSkill01KeyInputEvent = new ActiveSkillKeyInputEvent();
+            this._activeSkill02KeyInputEvent = new ActiveSkillKeyInputEvent();
+            this._activeSkill03KeyInputEvent = new ActiveSkillKeyInputEvent();
 
             DebugLogger.Assert(pressKeyChannel != null, "PressKeyChannel is null");
         }
@@ -53,8 +53,7 @@ namespace Scripts.Core.InputSystem
         
         public void OnDashAttack(InputAction.CallbackContext context)
         {
-            if (context.started)
-                pressKeyChannel.RaiseEvent(_playerDashAttackKeyInputEvent);
+
         }
 
         public void OnMove(InputAction.CallbackContext context)
@@ -63,21 +62,32 @@ namespace Scripts.Core.InputSystem
             {
                 Vector2 direction = context.ReadValue<Vector2>();
 
-                _playerMoveKeyInputEvent.direction = direction;
+                _playerMoveKeyInputEvent.Direction = direction;
                 pressKeyChannel.RaiseEvent(_playerMoveKeyInputEvent);
             }
-        }
-
-        public void OnDash(InputAction.CallbackContext context)
-        {
-            if (context.started)
-                pressKeyChannel.RaiseEvent(_playerDashKeyInputEvent);
         }
 
         public void OnActiveSkill(InputAction.CallbackContext context)
         {
             if (context.started)
-                pressKeyChannel.RaiseEvent(_playerActiveSkillKeyInputEvent);
+                pressKeyChannel.RaiseEvent(_activeSkill01KeyInputEvent);
+        }
+
+        public void OnActiveSkill01(InputAction.CallbackContext context)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void OnActiveSkill02(InputAction.CallbackContext context)
+        {
+            if (context.started)
+                pressKeyChannel.RaiseEvent(_activeSkill02KeyInputEvent);
+        }
+
+        public void OnActiveSkill03(InputAction.CallbackContext context)
+        {
+            if (context.started)
+                pressKeyChannel.RaiseEvent(_activeSkill03KeyInputEvent);
         }
     }
 }

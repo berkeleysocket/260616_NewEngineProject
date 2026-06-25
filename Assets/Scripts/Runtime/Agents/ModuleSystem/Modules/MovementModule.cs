@@ -1,34 +1,30 @@
 using Scripts.Core.EventChannels;
 using Scripts.Core.EventChannels.SO;
-using Scripts.Core.ObjectPool.SO;
 using Scripts.Core.Utilities;
 using Scripts.Core.Utilities.SO;
 using Scripts.Runtime.Agents.ModuleSystem.Modules.Interface;
 using Scripts.Runtime.Agents.ModuleSystem.Modules.SO;
 
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 namespace Scripts.Runtime.Agents.ModuleSystem.Modules
 {
-    public class MovementModule : AbstractModule, IMovable
+    public class MovementModule : AbstractModule, IMovementModule
     {
         [SerializeField] CharacterController controller;
         [SerializeField] private MovementModuleDataSO movementData;
         [SerializeField] private EventChannelSO pressKeyChannel;
         [SerializeField] private AssetNameSO vfxFootstepAssetNameSO;
-        [SerializeField] private PoolItemSO vfxDashSO;
 
+        public bool CanMove { get; set; }
         public Vector2 LastMoveDirection { get; private set; }
+        public bool IsMoving { get; private set; }
 
-        private VfxModule _vfxModule;
-        private Coroutine _dashCoroutine;
-        private Coroutine _dashCooldownCoroutine;
-
+        private IVfxModule _vfxModule;
+        private ITriggerModule _triggerModule;
         private Vector3 _velocity = Vector3.zero;
         private float _moveSpeed = 0f;
-
-        public bool IsMoving { get; private set; }
-        public bool CanMove { get; set; }
 
         private void FixedUpdate()
         {
@@ -38,8 +34,12 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules
 
         protected override void OnInitialize()
         {
-            if (movementData != null)          
+            if (movementData != null)
                 this._moveSpeed = movementData.MoveSpeed;
+            this.CanMove = true;
+
+            _vfxModule = owner.GetModule<IVfxModule>();
+            _triggerModule = owner.GetModule<ITriggerModule>();
 
             DebugLogger.Assert(controller != null, "Controller is null");
             DebugLogger.Assert(pressKeyChannel != null, "PlayerMoveKeyInputChannel is null");
@@ -47,11 +47,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules
             DebugLogger.Assert(_vfxModule != null, "VfxModule is null");
             DebugLogger.Assert(vfxFootstepAssetNameSO != null, "VfxFootstepAssetNameSO is null");
 
-            pressKeyChannel.AddListener<MoveKeyInputEvent>(OnMoveKeyInput);
-        }
-
-        private void Start()
-        {
+            pressKeyChannel.AddListener<MoveKeyInputEvent>(HandleMoveKeyInput);
             _vfxModule?.StopVfx(vfxFootstepAssetNameSO.AssetNameHash);
         }
 
@@ -62,6 +58,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules
             if (!CanMove) return;
 
             _velocity = new Vector3(direction.x, 0, direction.y) * _moveSpeed;
+            _triggerModule?.OnMoved();
             _vfxModule?.PlayVfx(vfxFootstepAssetNameSO.AssetNameHash);
             RotateTo(_velocity);
 
@@ -77,9 +74,6 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules
 
         public void SpeedUp(float speed) => _velocity *= speed;
 
-        private void OnMoveKeyInput(MoveKeyInputEvent args)
-        {
-            Move(args.direction);
-        }
+        private void HandleMoveKeyInput(MoveKeyInputEvent args) => Move(args.Direction);
     }
 }

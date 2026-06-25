@@ -12,13 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d4ac486fafc45499d0592aa09cbbe2, type: 3}
   m_Name: player State DASH
   m_EditorClassIdentifier: Assembly-CSharp::Runtime.Agents.FSM.AgentStateSO
-  m_Description: 
   <StateName>k__BackingField: DASH
   <ClassName>k__BackingField: Runtime.Agents.FSM.AgentDashState
   <AnimationParamSO>k__BackingField: {fileID: 11400000, guid: 9fe050e2a5457f047bc2340ca9daef5c, type: 2}
-  <StateIndex>k__BackingField: 2
-  <Paths>k__BackingField:
-  - DestinationState: 0
-    Condition: {fileID: 0}
-  - DestinationState: 0
-    Condition: {fileID: 0}
+  <StateType>k__BackingField: 0
+  <Paths>k__BackingField: []

@@ -24,7 +24,7 @@ namespace Scripts.Runtime.Agents.FSM
                 int animationHash = stateSO.AnimationParamSO.AssetNameHash;
                 StatePath[] conditions = stateSO.Paths;
 
-                DebugLogger.Assert(stateType != null, "DestinationState is null");
+                DebugLogger.Assert(stateType != null, $"StateType : {stateSO.ClassName} is null");
                 DebugLogger.Assert(renderer != null, "Renderer is null");
                 DebugLogger.Assert(conditions != null && conditions.Length > 0, "Paths is null");
 
