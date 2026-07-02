@@ -44,10 +44,7 @@ namespace Scripts.Core.ObjectPool
         public void Push(IPoolable item)
         {
             if (_pools.TryGetValue(item.Item, out Pool pool))
-            {
-                DebugLogger.LogSuccess($"Pop : {item.GetType().Name}");
                 pool.Push(item);
-            }
             else
                 DebugLogger.LogError($"{item.GetType().Name}은 PoolList에 등록되어있지 않습니다!");
         }

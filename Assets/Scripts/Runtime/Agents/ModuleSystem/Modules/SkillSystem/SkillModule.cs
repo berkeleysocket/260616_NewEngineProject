@@ -1,6 +1,5 @@
 using Scripts.Core.EventChannels;
 using Scripts.Core.EventChannels.SO;
-using Scripts.Core.Utilities;
 using Scripts.Runtime.Agents.ModuleSystem.Modules.Interface;
 
 using System.Collections.Generic;
@@ -12,6 +11,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
     public class SkillModule : AbstractModule, ISkillModule
     {
         [SerializeField] private EventChannelSO pressKeyChannel;
+
         public bool IsSkillCasting { get => currentSkill != null; }
 
         private Dictionary<SkillType, AbstractSkill> skills;
@@ -30,33 +30,16 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
             foreach (var skill in skills.Values)
                 skill.Initialize(owner);
 
-            pressKeyChannel.AddListener<ActiveSkillKeyInputEvent>(HandleActiveSkill01KeyInputEvent);
-            pressKeyChannel.AddListener<ActiveSkillKeyInputEvent>(HandleActiveSkill02KeyInputEvent);
-            pressKeyChannel.AddListener<ActiveSkillKeyInputEvent>(HandleActiveSkill03KeyInputEvent);
+            pressKeyChannel.AddListener<ActiveSkillKeyInputEvent>(HandleActiveSkillKeyInputEvent);
         }
 
         public void SkillCast(SkillType skillType)
         {
             if (skills.TryGetValue(skillType, out var skill))
-            {
                 if(skill.CanCast())
                     skill.Cast();
-            }
         }
 
-        private void HandleActiveSkill01KeyInputEvent(ActiveSkillKeyInputEvent args)
-        {
-            SkillCast(SkillType.ActiveSkill01);
-        }
-
-        private void HandleActiveSkill02KeyInputEvent(ActiveSkillKeyInputEvent args)
-        {
-            SkillCast(SkillType.ActiveSkill02);
-        }
-
-        private void HandleActiveSkill03KeyInputEvent(ActiveSkillKeyInputEvent args)
-        {
-            SkillCast(SkillType.ActiveSkill03);
-        }
+        private void HandleActiveSkillKeyInputEvent(ActiveSkillKeyInputEvent args)=> SkillCast(args.ActiveSkillType);
     }
 }

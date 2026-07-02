@@ -1,6 +1,7 @@
 using Scripts.Core.EventChannels;
 using Scripts.Core.EventChannels.SO;
 using Scripts.Core.ObjectPool.SO;
+using Scripts.Core.Utilities;
 using Scripts.Runtime.Agents.ModuleSystem.Modules.SO;
 
 using System.Collections;
@@ -34,7 +35,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
             this._dashTimer = new WaitForSeconds(_duration);
         }
 
-        public override void Cast()
+        public override void OnCast()
         {
             _dashCoroutine = StartCoroutine(Dash());
         }
@@ -57,12 +58,13 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
 
         private IEnumerator Dash()
         {
-            Vector3 dashDirection = new Vector3(_movementModule.LastMoveDirection.x, 0, _movementModule.LastMoveDirection.y);
-            _movementModule.RotateTo(dashDirection);
+            _movementModule.RotateTo(_movementModule.LastMoveDirection);
+            DebugLogger.Log(owner.gameObject.name);
+            DebugLogger.Log(owner.transform.rotation.eulerAngles);
             CreateEvents.ShowPoolingVfxEvent.Initialize(VfxDashSO, owner.transform.position, owner.transform.rotation);
             CreateChannel.RaiseEvent(CreateEvents.ShowPoolingVfxEvent);
-            _movementModule.Move(dashDirection);
-            _movementModule.SpeedUp(_speed);
+            _movementModule.Move(_movementModule.LastMoveDirection);
+            _movementModule.SetVelocity(_speed);
             _movementModule.CanMove = false;
 
             yield return _dashTimer;

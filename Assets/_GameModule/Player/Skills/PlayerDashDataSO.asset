@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerDashDataSO
   m_EditorClassIdentifier: Assembly-CSharp::Scripts.Runtime.Agents.ModuleSystem.Modules.SO.PlayerDashDataSO
   <SkillType>k__BackingField: 0
-  <Cooldown>k__BackingField: 0.2
+  <Cooldown>k__BackingField: 0.25
   <Speed>k__BackingField: 10
-  <Duration>k__BackingField: 0.2
+  <Duration>k__BackingField: 0.25

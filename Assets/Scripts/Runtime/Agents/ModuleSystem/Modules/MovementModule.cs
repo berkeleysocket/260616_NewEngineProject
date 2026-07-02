@@ -68,7 +68,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules
             owner.transform.forward = direction.normalized;
         }
 
-        public void SpeedUp(float speed) => _moveSpeed = speed;
+        public void SetVelocity(float speed) => this._velocity = new Vector3(LastMoveDirection.x, 0, LastMoveDirection.y) * speed;
 
         private void HandleMoveKeyInput(MoveKeyInputEvent args) => Move(args.Direction);
     }

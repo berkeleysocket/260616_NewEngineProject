@@ -34,9 +34,8 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
             this._dashAttackTimer = new WaitForSeconds(_duration);
         }
 
-        public override void Cast()
+        public override void OnCast()
         {
-            _movementModule.CanMove = false;
             _dashAttackCoroutine = StartCoroutine(DashAttackCoroutine());
         }
 
@@ -48,7 +47,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
         public override void StopSkill()
         {
             base.StopSkill();
-            if(_dashAttackCoroutine != null)
+            if (_dashAttackCoroutine != null)
             {
                 StopCoroutine(_dashAttackCoroutine);
                 _dashAttackCoroutine = null;
@@ -58,16 +57,18 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
 
         private IEnumerator DashAttackCoroutine()
         {
-            Vector3 dashDirection = new Vector3(_movementModule.LastMoveDirection.x, 0, _movementModule.LastMoveDirection.y);
-            _movementModule.RotateTo(dashDirection);
+            _movementModule.RotateTo(_movementModule.LastMoveDirection);
             CreateEvents.ShowPoolingVfxEvent.Initialize(VfxDashAttackSO, owner.transform.position, owner.transform.rotation);
             CreateChannel.RaiseEvent(CreateEvents.ShowPoolingVfxEvent);
-            _movementModule.SpeedUp(_speed);
-            _movementModule.Move(dashDirection);
+            _movementModule.Move(_movementModule.LastMoveDirection);
+            _movementModule.SetVelocity(_speed);
+            _movementModule.CanMove = false;
 
             yield return _dashAttackTimer;
 
             _dashAttackCoroutine = null;
+            _movementModule.CanMove = true;
+            _movementModule.Move(_movementModule.LastMoveDirection);
         }
     }
 }

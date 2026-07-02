@@ -11,6 +11,6 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.Interface
 
         void Move(Vector2 direction);
         void RotateTo(Vector3 direction);
-        void SpeedUp(float speed);
+        void SetVelocity(float speed);
     }
 }

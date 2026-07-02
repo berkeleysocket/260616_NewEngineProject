@@ -11,7 +11,7 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
         public SkillType Type { get; protected set; }
 
         protected ModuleOwner owner;
-        protected bool IsCooldownReady => SkillData.Cooldown == 0 ? true : Time.time - _lastUsingTime >= SkillData.Cooldown;
+        protected bool IsCooldownReady => _cooldown == 0 || _lastUsingTime == 0 ? true : Time.time - _lastUsingTime >= _cooldown;
 
         private float _lastUsingTime;
         private float _cooldown;
@@ -25,7 +25,13 @@ namespace Scripts.Runtime.Agents.ModuleSystem.Modules.SkillSystem
         }
         protected abstract void OnInitialize();
 
-        public abstract void Cast();
+        public void Cast()
+        {
+            this._lastUsingTime = Time.time;
+            OnCast();
+        }
+        public abstract void OnCast();
+
         public abstract bool CanCast(); 
 
         public virtual void StopSkill()
